@@ -1,0 +1,74 @@
+.phrase-card {
+  width: min(100%, 560px);
+  min-height: 320px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 16px;
+  padding: 0;
+  background: #fff;
+  color: #0f172a;
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.phrase-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 52px rgba(15, 23, 42, 0.16);
+}
+
+.phrase-card:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 4px;
+}
+
+.phrase-card.is-revealed {
+  border-color: rgba(14, 165, 233, 0.36);
+  background: #f8fbff;
+}
+
+.phrase-card-face {
+  display: grid;
+  min-height: 320px;
+  grid-template-rows: 24px minmax(112px, auto) 36px;
+  align-content: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.phrase-label {
+  color: #2563eb;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.phrase-prompt,
+.phrase-answer {
+  display: block;
+  align-self: center;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.04;
+}
+
+.phrase-support {
+  display: block;
+  align-self: center;
+  color: #475569;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .phrase-card,
+  .phrase-card-face {
+    min-height: 280px;
+  }
+
+  .phrase-card-face {
+    grid-template-rows: 22px minmax(92px, auto) 32px;
+    padding: 1.35rem;
+  }
+}
