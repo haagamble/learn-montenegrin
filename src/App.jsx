@@ -87,6 +87,13 @@ function matchesTypeFilter(item, filterId) {
   return item.type === 'sentence';
 }
 
+function shuffleItems(items) {
+  return [...items]
+    .map((item) => ({ item, sortValue: Math.random() }))
+    .sort((first, second) => first.sortValue - second.sortValue)
+    .map(({ item }) => item);
+}
+
 function loadReviewState() {
   try {
     return JSON.parse(localStorage.getItem(reviewStorageKey)) ?? {};
@@ -103,6 +110,7 @@ function App() {
   const [isDeckComplete, setIsDeckComplete] = useState(false);
   const [studyView, setStudyView] = useState('cards');
   const [typeFilter, setTypeFilter] = useState('all');
+  const [shuffleSeed, setShuffleSeed] = useState(0);
   const [reviewState, setReviewState] = useState(loadReviewState);
 
   const categoryOptions = [allCategories, practiceCategory, ...categories];
@@ -129,11 +137,14 @@ function App() {
       items = learningItems.filter((item) => item.categoryId === selectedCategoryId);
     }
 
-    return sortDeck(
-      items.filter((item) => matchesTypeFilter(item, typeFilter)),
-      selectedCategoryId
-    );
-  }, [practiceIds, selectedCategoryId, typeFilter]);
+    const filteredItems = items.filter((item) => matchesTypeFilter(item, typeFilter));
+
+    if (studyView === 'list') {
+      return sortDeck(filteredItems, selectedCategoryId);
+    }
+
+    return shuffleItems(filteredItems);
+  }, [practiceIds, selectedCategoryId, shuffleSeed, studyView, typeFilter]);
 
   const currentItem = deck[currentIndex] ?? deck[0];
   const phraseCount = learningItems.length;
@@ -157,6 +168,7 @@ function App() {
 
   const chooseCategory = (categoryId) => {
     setSelectedCategoryId(categoryId);
+    setShuffleSeed((value) => value + 1);
     resetDeckPosition();
   };
 
@@ -168,6 +180,7 @@ function App() {
 
   const chooseTypeFilter = (filterId) => {
     setTypeFilter(filterId);
+    setShuffleSeed((value) => value + 1);
     resetDeckPosition();
   };
 
