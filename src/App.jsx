@@ -87,6 +87,18 @@ function matchesTypeFilter(item, filterId) {
   return item.type === 'sentence';
 }
 
+function matchesSearch(item, searchQuery) {
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+
+  if (!normalizedQuery) {
+    return true;
+  }
+
+  return [item.english, item.montenegrin, item.phonetic].some((value) =>
+    value.toLowerCase().includes(normalizedQuery)
+  );
+}
+
 function shuffleItems(items) {
   return [...items]
     .map((item) => ({ item, sortValue: Math.random() }))
@@ -110,6 +122,7 @@ function App() {
   const [isDeckComplete, setIsDeckComplete] = useState(false);
   const [studyView, setStudyView] = useState('cards');
   const [typeFilter, setTypeFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [shuffleSeed, setShuffleSeed] = useState(0);
   const [reviewState, setReviewState] = useState(loadReviewState);
 
@@ -137,14 +150,16 @@ function App() {
       items = learningItems.filter((item) => item.categoryId === selectedCategoryId);
     }
 
-    const filteredItems = items.filter((item) => matchesTypeFilter(item, typeFilter));
+    const filteredItems = items.filter(
+      (item) => matchesTypeFilter(item, typeFilter) && matchesSearch(item, searchQuery)
+    );
 
     if (studyView === 'list') {
       return sortDeck(filteredItems, selectedCategoryId);
     }
 
     return shuffleItems(filteredItems);
-  }, [practiceIds, selectedCategoryId, shuffleSeed, studyView, typeFilter]);
+  }, [practiceIds, searchQuery, selectedCategoryId, shuffleSeed, studyView, typeFilter]);
 
   const currentItem = deck[currentIndex] ?? deck[0];
   const phraseCount = learningItems.length;
@@ -180,6 +195,18 @@ function App() {
 
   const chooseTypeFilter = (filterId) => {
     setTypeFilter(filterId);
+    setShuffleSeed((value) => value + 1);
+    resetDeckPosition();
+  };
+
+  const updateSearchQuery = (event) => {
+    setSearchQuery(event.target.value);
+    setShuffleSeed((value) => value + 1);
+    resetDeckPosition();
+  };
+
+  const clearSearchQuery = () => {
+    setSearchQuery('');
     setShuffleSeed((value) => value + 1);
     resetDeckPosition();
   };
@@ -347,6 +374,24 @@ function App() {
             )}
           </div>
 
+          <div className="search-box" role="search">
+            <label htmlFor="phrase-search">Search phrases</label>
+            <div className="search-input-wrap">
+              <input
+                id="phrase-search"
+                type="search"
+                value={searchQuery}
+                onChange={updateSearchQuery}
+                placeholder="Search English, Montenegrin, or phonetic..."
+              />
+              {searchQuery && (
+                <button type="button" onClick={clearSearchQuery}>
+                  Clear
+                </button>
+              )}
+            </div>
+          </div>
+
           <div className="type-filter" aria-label="Card type">
             {typeFilters.map((filter) => (
               <button
@@ -377,8 +422,12 @@ function App() {
               </div>
             ) : (
               <div className="empty-practice">
-                <h3>No cards in this deck</h3>
-                <p>Try a different card type or choose another deck.</p>
+                <h3>{searchQuery ? `No matches for "${searchQuery}"` : 'No cards in this deck'}</h3>
+                <p>
+                  {searchQuery
+                    ? 'Try a broader search or adjust the selected filters.'
+                    : 'Try a different card type or choose another deck.'}
+                </p>
               </div>
             )
           ) : isDeckComplete ? (
@@ -454,8 +503,12 @@ function App() {
             </>
           ) : (
             <div className="empty-practice">
-              <h3>No cards in this deck</h3>
-              <p>Try a different card type or choose another deck.</p>
+              <h3>{searchQuery ? `No matches for "${searchQuery}"` : 'No cards in this deck'}</h3>
+              <p>
+                {searchQuery
+                  ? 'Try a broader search or adjust the selected filters.'
+                  : 'Try a different card type or choose another deck.'}
+              </p>
             </div>
           )}
         </section>

@@ -198,6 +198,56 @@
   margin-bottom: 1.25rem;
 }
 
+.search-box {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.search-box label {
+  color: #334155;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.search-input-wrap {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.search-input-wrap input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+  background: #fff;
+  color: #0f172a;
+  font: inherit;
+}
+
+.search-input-wrap input:focus {
+  border-color: #0f766e;
+  outline: 3px solid rgba(20, 184, 166, 0.18);
+}
+
+.search-input-wrap button {
+  min-height: 44px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0 0.9rem;
+  background: #f8fafc;
+  color: #334155;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.search-input-wrap button:hover {
+  border-color: #0f766e;
+  color: #0f766e;
+}
+
 .segmented-control {
   display: flex;
   gap: 0.5rem;
@@ -225,7 +275,7 @@
   display: flex;
   gap: 0.45rem;
   flex-wrap: wrap;
-  margin: -0.55rem 0 1.25rem;
+  margin: 0 0 1.25rem;
 }
 
 .type-filter button {
@@ -473,6 +523,11 @@
   .study-actions .reveal-button {
     flex: 1 1 130px;
     min-width: 0;
+  }
+
+  .search-input-wrap {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .word-row {
