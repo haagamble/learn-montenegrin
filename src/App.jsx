@@ -164,6 +164,17 @@ function App() {
   const currentItem = deck[currentIndex] ?? deck[0];
   const phraseCount = learningItems.length;
   const practiceCount = practiceIds.size;
+  const getCategoryCount = (categoryId) => {
+    if (categoryId === 'all') {
+      return learningItems.length;
+    }
+
+    if (categoryId === 'practice') {
+      return practiceCount;
+    }
+
+    return learningItems.filter((item) => item.categoryId === categoryId).length;
+  };
 
   useEffect(() => {
     localStorage.setItem(reviewStorageKey, JSON.stringify(reviewState));
@@ -283,38 +294,42 @@ function App() {
             <p>{selectedCategory.description}</p>
           </div>
           <div className="category-list">
-            {categoryOptions.map((category) => {
-              let count = learningItems.filter((item) => item.categoryId === category.id).length;
-
-              if (category.id === 'all') {
-                count = learningItems.length;
-              }
-
-              if (category.id === 'practice') {
-                count = practiceCount;
-              }
-
-              return (
-                <button
-                  key={category.id}
-                  type="button"
-                  className={[
-                    category.id === selectedCategoryId ? 'is-active' : '',
-                    category.id === 'practice' ? 'is-practice-deck' : ''
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
-                  onClick={() => chooseCategory(category.id)}
-                >
-                  <span>{category.name}</span>
-                  <strong>{count}</strong>
-                </button>
-              );
-            })}
+            {categoryOptions.map((category) => (
+              <button
+                key={category.id}
+                type="button"
+                className={[
+                  category.id === selectedCategoryId ? 'is-active' : '',
+                  category.id === 'practice' ? 'is-practice-deck' : ''
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+                onClick={() => chooseCategory(category.id)}
+              >
+                <span>{category.name}</span>
+                <strong>{getCategoryCount(category.id)}</strong>
+              </button>
+            ))}
           </div>
         </aside>
 
         <section className="practice-panel">
+          <div className="mobile-deck-picker">
+            <label htmlFor="mobile-deck-select">Deck</label>
+            <select
+              id="mobile-deck-select"
+              value={selectedCategoryId}
+              onChange={(event) => chooseCategory(event.target.value)}
+            >
+              {categoryOptions.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name} ({getCategoryCount(category.id)})
+                </option>
+              ))}
+            </select>
+            <p>{selectedCategory.description}</p>
+          </div>
+
           <div className="section-head">
             <div>
               <h2>{studyView === 'cards' ? 'Flashcards' : 'Word List'}</h2>
