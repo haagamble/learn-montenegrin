@@ -5,6 +5,11 @@ function PhraseCard({ item, promptSide, isRevealed, onFlip }) {
   const backLanguage = promptSide === 'english' ? 'Montenegrin' : 'English';
   const frontText = promptSide === 'english' ? item.english : item.montenegrin;
   const backText = promptSide === 'english' ? item.montenegrin : item.english;
+  const frontSupport =
+    promptSide === 'montenegrin'
+      ? item.phonetic
+      : `Think of the ${backLanguage.toLowerCase()} answer.`;
+  const backSupport = promptSide === 'english' ? item.phonetic : 'Check your English recall.';
 
   return (
     <button
@@ -17,13 +22,13 @@ function PhraseCard({ item, promptSide, isRevealed, onFlip }) {
         <span className="phrase-card-face">
           <span className="phrase-label">{frontLanguage}</span>
           <span className="phrase-prompt">{frontText}</span>
-          <span className="phrase-support">Think of the {backLanguage.toLowerCase()} answer.</span>
+          <span className="phrase-support">{frontSupport}</span>
         </span>
       ) : (
         <span className="phrase-card-face">
           <span className="phrase-label">{backLanguage}</span>
           <span className="phrase-answer">{backText}</span>
-          <span className="phrase-support">{item.phonetic}</span>
+          <span className="phrase-support">{backSupport}</span>
         </span>
       )}
     </button>

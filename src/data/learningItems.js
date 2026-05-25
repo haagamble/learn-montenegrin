@@ -244,7 +244,7 @@ export const learningItems = [
     type: 'sentence',
     difficulty: 1,
     montenegrin: 'Kako ste?',
-    english: 'How are you?',
+    english: 'How are you? (formal)',
     phonetic: 'KAH-koh steh',
   },
   {
@@ -253,7 +253,7 @@ export const learningItems = [
     type: 'sentence',
     difficulty: 1,
     montenegrin: 'Kako si?',
-    english: 'How are you?',
+    english: 'How are you? (casual)',
     phonetic: 'KAH-koh see',
   },
   {
@@ -748,7 +748,7 @@ export const learningItems = [
     type: 'sentence',
     difficulty: 2,
     montenegrin: 'Mogu li platiti karticom?',
-    english: 'Can I pay by card?',
+    english: 'Can I pay by card? (general)',
     phonetic: 'MOH-goo lee PLAH-tee-tee KAR-tee-tsom',
   },
   {
@@ -3439,7 +3439,7 @@ export const learningItems = [
     type: 'sentence',
     difficulty: 2,
     montenegrin: 'Mogu li platiti karticom?',
-    english: 'Can I pay by card?',
+    english: 'Can I pay by card? (shopping)',
     phonetic: 'MOH-goo lee PLAH-tee-tee KAR-tee-tsom',
   },
   {
