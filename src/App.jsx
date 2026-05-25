@@ -24,6 +24,66 @@ const typeFilters = [
   { id: 'sentences', label: 'Sentences' }
 ];
 
+const conversationScenarios = [
+  {
+    id: 'cafe',
+    name: 'Cafe',
+    description: 'Order a drink, ask for the bill, and close politely.',
+    itemIds: ['good-day', 'table-for-two', 'i-would-like-coffee', 'bill-please', 'thank-you']
+  },
+  {
+    id: 'hotel',
+    name: 'Hotel',
+    description: 'Check in, ask about breakfast, and handle a key problem.',
+    itemIds: ['i-have-reservation', 'where-is-reception', 'is-breakfast-included', 'key-does-not-work']
+  },
+  {
+    id: 'transport',
+    name: 'Transport',
+    description: 'Find the station, buy a ticket, and ask about departure.',
+    itemIds: ['where-is-bus-station', 'i-need-ticket', 'when-does-bus-leave', 'i-need-taxi']
+  },
+  {
+    id: 'directions-help',
+    name: 'Directions and Help',
+    description: 'Ask for directions and recover when you do not understand.',
+    itemIds: [
+      'where-bathroom',
+      'go-straight',
+      'turn-left',
+      'i-do-not-understand',
+      'please-speak-slowly',
+      'can-you-repeat-that'
+    ]
+  },
+  {
+    id: 'meeting-someone',
+    name: 'Meeting Someone',
+    description: 'Introduce yourself and ask where someone is from.',
+    itemIds: [
+      'good-day',
+      'what-is-your-name',
+      'my-name-is-ana',
+      'where-are-you-from',
+      'i-am-from-the-united-states',
+      'nice-to-meet-you'
+    ]
+  },
+  {
+    id: 'technology',
+    name: 'Technology',
+    description: 'Ask about Wi-Fi, passwords, charging, and common device problems.',
+    itemIds: [
+      'do-you-have-wifi',
+      'wifi-password',
+      'wifi-does-not-work',
+      'need-charger',
+      'charge-phone-here',
+      'app-does-not-work'
+    ]
+  }
+];
+
 const numberOrder = new Map(
   [
     'zero',
@@ -116,6 +176,9 @@ function loadReviewState() {
 
 function App() {
   const [activeMode, setActiveMode] = useState('home');
+  const [selectedScenarioId, setSelectedScenarioId] = useState(conversationScenarios[0].id);
+  const [conversationIndex, setConversationIndex] = useState(0);
+  const [isConversationRevealed, setIsConversationRevealed] = useState(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState('all');
   const [promptSide, setPromptSide] = useState('english');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -130,6 +193,18 @@ function App() {
   const categoryOptions = [allCategories, practiceCategory, ...categories];
   const selectedCategory =
     categoryOptions.find((category) => category.id === selectedCategoryId) ?? allCategories;
+  const learningItemById = useMemo(
+    () => new Map(learningItems.map((item) => [item.id, item])),
+    []
+  );
+  const selectedScenario =
+    conversationScenarios.find((scenario) => scenario.id === selectedScenarioId) ??
+    conversationScenarios[0];
+  const conversationItems = useMemo(
+    () => selectedScenario.itemIds.map((id) => learningItemById.get(id)).filter(Boolean),
+    [learningItemById, selectedScenario]
+  );
+  const currentConversationItem = conversationItems[conversationIndex] ?? conversationItems[0];
   const practiceIds = useMemo(
     () =>
       new Set(
@@ -187,6 +262,13 @@ function App() {
     }
   }, [currentIndex, deck.length]);
 
+  useEffect(() => {
+    if (conversationItems.length > 0 && conversationIndex > conversationItems.length - 1) {
+      setConversationIndex(conversationItems.length - 1);
+      setIsConversationRevealed(false);
+    }
+  }, [conversationIndex, conversationItems.length]);
+
   const resetDeckPosition = () => {
     setCurrentIndex(0);
     setIsRevealed(false);
@@ -221,6 +303,25 @@ function App() {
     setSearchQuery('');
     setShuffleSeed((value) => value + 1);
     resetDeckPosition();
+  };
+
+  const chooseScenario = (scenarioId) => {
+    setSelectedScenarioId(scenarioId);
+    setConversationIndex(0);
+    setIsConversationRevealed(false);
+  };
+
+  const moveToConversationLine = (nextIndex) => {
+    setConversationIndex(nextIndex);
+    setIsConversationRevealed(false);
+  };
+
+  const moveNextConversationLine = () => {
+    moveToConversationLine(Math.min(conversationItems.length - 1, conversationIndex + 1));
+  };
+
+  const movePreviousConversationLine = () => {
+    moveToConversationLine(Math.max(0, conversationIndex - 1));
   };
 
   const moveToCard = (nextIndex) => {
@@ -304,30 +405,131 @@ function App() {
               className="mode-card mode-card-secondary"
               onClick={() => setActiveMode('conversation')}
             >
-              <span className="mode-kicker">Coming next</span>
+              <span className="mode-kicker">Practice scenes</span>
               <strong>Conversation Practice</strong>
-              <span>Short real-life scenarios for cafes, hotels, transport, and help.</span>
-              <span className="mode-count">Preview</span>
+              <span>Practice short real-life scenarios line by line.</span>
+              <span className="mode-count">{conversationScenarios.length} scenarios</span>
             </button>
           </section>
         </main>
       ) : activeMode === 'conversation' ? (
         <main className="conversation-layout">
-          <section className="conversation-panel">
+          <aside className="scenario-panel" aria-label="Conversation scenarios">
             <div className="screen-toolbar">
               <button type="button" className="back-button" onClick={() => setActiveMode('home')}>
                 Back
               </button>
             </div>
-            <span className="complete-kicker">Coming soon</span>
-            <h2>Conversation Practice</h2>
-            <p>
-              This mode will group useful phrases into short real-life scenarios, starting with
-              cafe, hotel, transport, directions, and help/confusion practice.
-            </p>
-            <button type="button" onClick={() => setActiveMode('flashcards')}>
-              Practice flashcards
-            </button>
+            <div className="panel-heading">
+              <h2>Scenarios</h2>
+              <p>{selectedScenario.description}</p>
+            </div>
+            <div className="scenario-list">
+              {conversationScenarios.map((scenario) => (
+                <button
+                  key={scenario.id}
+                  type="button"
+                  className={scenario.id === selectedScenarioId ? 'is-active' : ''}
+                  onClick={() => chooseScenario(scenario.id)}
+                >
+                  <span>{scenario.name}</span>
+                  <strong>{scenario.itemIds.length}</strong>
+                </button>
+              ))}
+            </div>
+          </aside>
+
+          <section className="conversation-panel">
+            <div className="mobile-deck-picker">
+              <label htmlFor="mobile-scenario-select">Scenario</label>
+              <select
+                id="mobile-scenario-select"
+                value={selectedScenarioId}
+                onChange={(event) => chooseScenario(event.target.value)}
+              >
+                {conversationScenarios.map((scenario) => (
+                  <option key={scenario.id} value={scenario.id}>
+                    {scenario.name} ({scenario.itemIds.length})
+                  </option>
+                ))}
+              </select>
+              <p>{selectedScenario.description}</p>
+            </div>
+
+            <div className="section-head">
+              <div>
+                <h2>{selectedScenario.name}</h2>
+                <p>Practice one line at a time, then reveal the Montenegrin.</p>
+              </div>
+              <div className="session-meter" aria-label="Conversation line">
+                <span>Line</span>
+                <strong>
+                  {conversationItems.length > 0 ? conversationIndex + 1 : 0} of{' '}
+                  {conversationItems.length}
+                </strong>
+              </div>
+            </div>
+
+            {currentConversationItem ? (
+              <>
+                <div className="conversation-card">
+                  <span className="phrase-label">English</span>
+                  <strong>{currentConversationItem.english}</strong>
+                  {isConversationRevealed ? (
+                    <span className="conversation-answer">
+                      <span>{currentConversationItem.montenegrin}</span>
+                      <small>{currentConversationItem.phonetic}</small>
+                    </span>
+                  ) : (
+                    <span className="phrase-support">Think of the Montenegrin line.</span>
+                  )}
+                </div>
+
+                <div className="study-actions">
+                  <button
+                    type="button"
+                    onClick={movePreviousConversationLine}
+                    disabled={conversationIndex === 0}
+                  >
+                    Previous
+                  </button>
+                  <button
+                    type="button"
+                    className="reveal-button"
+                    onClick={() => setIsConversationRevealed((value) => !value)}
+                  >
+                    {isConversationRevealed ? 'Hide answer' : 'Reveal answer'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={moveNextConversationLine}
+                    disabled={conversationIndex === conversationItems.length - 1}
+                  >
+                    Next
+                  </button>
+                </div>
+
+                <div className="conversation-transcript" aria-label={`${selectedScenario.name} transcript`}>
+                  {conversationItems.map((item, index) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      className={index === conversationIndex ? 'is-active' : ''}
+                      onClick={() => moveToConversationLine(index)}
+                    >
+                      <span>{index + 1}</span>
+                      <strong>{item.english}</strong>
+                      <small>{item.montenegrin}</small>
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="empty-practice">
+                <h3>No lines in this scenario</h3>
+                <p>Choose another scenario.</p>
+              </div>
+            )}
           </section>
         </main>
       ) : (
