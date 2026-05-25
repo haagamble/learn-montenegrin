@@ -269,10 +269,9 @@ function App() {
       <header className="hero">
         <div>
           <p className="eyebrow">Montenegrin learner</p>
-          <h1>Build usable Montenegrin through focused practice</h1>
+          <h1>Focused Montenegrin practice</h1>
           <p className="hero-copy">
-            Start with a shared vocabulary deck, choose a topic, and practice recall
-            from either language.
+            Choose a deck and practice recall from either language.
           </p>
         </div>
         <div className="hero-stats" aria-label="Starter curriculum">
