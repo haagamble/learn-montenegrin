@@ -115,6 +115,7 @@ function loadReviewState() {
 }
 
 function App() {
+  const [activeMode, setActiveMode] = useState('home');
   const [selectedCategoryId, setSelectedCategoryId] = useState('all');
   const [promptSide, setPromptSide] = useState('english');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -269,9 +270,11 @@ function App() {
       <header className="hero">
         <div>
           <p className="eyebrow">Montenegrin learner</p>
-          <h1>Focused Montenegrin practice</h1>
+          <h1>{activeMode === 'home' ? 'Choose a practice mode' : 'Focused Montenegrin practice'}</h1>
           <p className="hero-copy">
-            Choose a deck and practice recall from either language.
+            {activeMode === 'home'
+              ? 'Build recall now, with conversation practice ready to grow next.'
+              : 'Choose a deck and practice recall from either language.'}
           </p>
         </div>
         <div className="hero-stats" aria-label="Starter curriculum">
@@ -286,7 +289,49 @@ function App() {
         </div>
       </header>
 
-      <main className="learning-layout">
+      {activeMode === 'home' ? (
+        <main className="home-screen">
+          <section className="mode-grid" aria-label="Practice modes">
+            <button type="button" className="mode-card" onClick={() => setActiveMode('flashcards')}>
+              <span className="mode-kicker">Study now</span>
+              <strong>Flashcards</strong>
+              <span>Practice words, phrases, and sentences by deck.</span>
+              <span className="mode-count">{phraseCount} items</span>
+            </button>
+
+            <button
+              type="button"
+              className="mode-card mode-card-secondary"
+              onClick={() => setActiveMode('conversation')}
+            >
+              <span className="mode-kicker">Coming next</span>
+              <strong>Conversation Practice</strong>
+              <span>Short real-life scenarios for cafes, hotels, transport, and help.</span>
+              <span className="mode-count">Preview</span>
+            </button>
+          </section>
+        </main>
+      ) : activeMode === 'conversation' ? (
+        <main className="conversation-layout">
+          <section className="conversation-panel">
+            <div className="screen-toolbar">
+              <button type="button" className="back-button" onClick={() => setActiveMode('home')}>
+                Back
+              </button>
+            </div>
+            <span className="complete-kicker">Coming soon</span>
+            <h2>Conversation Practice</h2>
+            <p>
+              This mode will group useful phrases into short real-life scenarios, starting with
+              cafe, hotel, transport, directions, and help/confusion practice.
+            </p>
+            <button type="button" onClick={() => setActiveMode('flashcards')}>
+              Practice flashcards
+            </button>
+          </section>
+        </main>
+      ) : (
+        <main className="learning-layout">
         <aside className="category-panel" aria-label="Categories">
           <div className="panel-heading">
             <h2>Study Decks</h2>
@@ -313,6 +358,12 @@ function App() {
         </aside>
 
         <section className="practice-panel">
+          <div className="screen-toolbar">
+            <button type="button" className="back-button" onClick={() => setActiveMode('home')}>
+              Back
+            </button>
+          </div>
+
           <div className="mobile-deck-picker">
             <label htmlFor="mobile-deck-select">Deck</label>
             <select
@@ -527,6 +578,7 @@ function App() {
           )}
         </section>
       </main>
+      )}
     </div>
   );
 }
