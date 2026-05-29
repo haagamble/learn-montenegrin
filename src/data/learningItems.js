@@ -3565,7 +3565,7 @@ export const learningItems = [
     type: 'sentence',
     difficulty: 1,
     montenegrin: 'Zovem se Ana.',
-    english: 'My name is Ana.',
+    english: 'I am called Ana.',
     phonetic: 'ZOH-vem seh AH-nah',
   },
   {

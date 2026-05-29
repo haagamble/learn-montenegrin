@@ -525,11 +525,28 @@
   color: #0f766e;
 }
 
+.filter-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 0 0 1.25rem;
+}
+
+.filter-group {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.filter-group > span {
+  color: #334155;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
 .type-filter {
   display: flex;
   gap: 0.45rem;
   flex-wrap: wrap;
-  margin: 0 0 1.25rem;
 }
 
 .type-filter button {

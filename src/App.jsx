@@ -24,6 +24,12 @@ const typeFilters = [
   { id: 'sentences', label: 'Sentences' }
 ];
 
+const difficultyFilters = [
+  { id: 'all', label: 'All levels' },
+  { id: '1', label: 'Beginner' },
+  { id: '2', label: 'Intermediate' }
+];
+
 const conversationScenarios = [
   {
     id: 'cafe',
@@ -147,6 +153,10 @@ function matchesTypeFilter(item, filterId) {
   return item.type === 'sentence';
 }
 
+function matchesDifficultyFilter(item, filterId) {
+  return filterId === 'all' || item.difficulty === Number(filterId);
+}
+
 function matchesSearch(item, searchQuery) {
   const normalizedQuery = searchQuery.trim().toLowerCase();
 
@@ -186,6 +196,7 @@ function App() {
   const [isDeckComplete, setIsDeckComplete] = useState(false);
   const [studyView, setStudyView] = useState('cards');
   const [typeFilter, setTypeFilter] = useState('all');
+  const [difficultyFilter, setDifficultyFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [shuffleSeed, setShuffleSeed] = useState(0);
   const [reviewState, setReviewState] = useState(loadReviewState);
@@ -227,7 +238,10 @@ function App() {
     }
 
     const filteredItems = items.filter(
-      (item) => matchesTypeFilter(item, typeFilter) && matchesSearch(item, searchQuery)
+      (item) =>
+        matchesTypeFilter(item, typeFilter) &&
+        matchesDifficultyFilter(item, difficultyFilter) &&
+        matchesSearch(item, searchQuery)
     );
 
     if (studyView === 'list') {
@@ -235,7 +249,15 @@ function App() {
     }
 
     return shuffleItems(filteredItems);
-  }, [practiceIds, searchQuery, selectedCategoryId, shuffleSeed, studyView, typeFilter]);
+  }, [
+    difficultyFilter,
+    practiceIds,
+    searchQuery,
+    selectedCategoryId,
+    shuffleSeed,
+    studyView,
+    typeFilter
+  ]);
 
   const currentItem = deck[currentIndex] ?? deck[0];
   const phraseCount = learningItems.length;
@@ -289,6 +311,12 @@ function App() {
 
   const chooseTypeFilter = (filterId) => {
     setTypeFilter(filterId);
+    setShuffleSeed((value) => value + 1);
+    resetDeckPosition();
+  };
+
+  const chooseDifficultyFilter = (filterId) => {
+    setDifficultyFilter(filterId);
     setShuffleSeed((value) => value + 1);
     resetDeckPosition();
   };
@@ -587,7 +615,9 @@ function App() {
               <h2>{studyView === 'cards' ? 'Flashcards' : 'Word List'}</h2>
               <p>
                 {selectedCategory.name} deck ·{' '}
-                {typeFilters.find((filter) => filter.id === typeFilter)?.label ?? 'All'}
+                {typeFilters.find((filter) => filter.id === typeFilter)?.label ?? 'All'} ·{' '}
+                {difficultyFilters.find((filter) => filter.id === difficultyFilter)?.label ??
+                  'All levels'}
               </p>
             </div>
             {studyView === 'cards' ? (
@@ -659,17 +689,38 @@ function App() {
             </div>
           </div>
 
-          <div className="type-filter" aria-label="Card type">
-            {typeFilters.map((filter) => (
-              <button
-                key={filter.id}
-                type="button"
-                className={typeFilter === filter.id ? 'is-active' : ''}
-                onClick={() => chooseTypeFilter(filter.id)}
-              >
-                {filter.label}
-              </button>
-            ))}
+          <div className="filter-row">
+            <div className="filter-group">
+              <span>Type</span>
+              <div className="type-filter" aria-label="Card type">
+                {typeFilters.map((filter) => (
+                  <button
+                    key={filter.id}
+                    type="button"
+                    className={typeFilter === filter.id ? 'is-active' : ''}
+                    onClick={() => chooseTypeFilter(filter.id)}
+                  >
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="filter-group">
+              <span>Level</span>
+              <div className="type-filter" aria-label="Difficulty">
+                {difficultyFilters.map((filter) => (
+                  <button
+                    key={filter.id}
+                    type="button"
+                    className={difficultyFilter === filter.id ? 'is-active' : ''}
+                    onClick={() => chooseDifficultyFilter(filter.id)}
+                  >
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
           {studyView === 'list' ? (
