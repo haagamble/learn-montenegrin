@@ -241,6 +241,10 @@
   padding: 1.4rem;
 }
 
+.conversation-view-toggle {
+  margin: 0 0 1.25rem;
+}
+
 .conversation-card {
   display: grid;
   gap: 1rem;
@@ -254,10 +258,43 @@
   box-shadow: 0 18px 42px rgba(15, 23, 42, 0.1);
 }
 
-.conversation-card > strong {
+.conversation-context {
+  display: grid;
+  gap: 0.3rem;
+  border-left: 4px solid #bae6fd;
+  padding: 0.85rem 1rem;
+  background: #f0f9ff;
+  border-radius: 12px;
+}
+
+.conversation-context span {
+  color: #0369a1;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.conversation-context strong {
   color: #0f172a;
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  line-height: 1.04;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 1.25;
+}
+
+.conversation-context small {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.conversation-goal {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.conversation-goal strong {
+  color: #0f172a;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.12;
 }
 
 .conversation-answer {

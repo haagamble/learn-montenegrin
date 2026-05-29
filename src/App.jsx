@@ -42,6 +42,18 @@ const conversationScenarios = [
         english: 'Good day.',
         montenegrin: 'Dobar dan.',
         phonetic: 'DOH-bar dahn',
+        variants: [
+          {
+            english: 'Good morning.',
+            montenegrin: 'Dobro jutro.',
+            phonetic: 'DOH-broh YOO-troh'
+          },
+          {
+            english: 'Good evening.',
+            montenegrin: 'Dobro veče.',
+            phonetic: 'DOH-broh VEH-cheh'
+          }
+        ],
         practice: true
       },
       {
@@ -176,6 +188,18 @@ const conversationScenarios = [
         english: 'Good evening.',
         montenegrin: 'Dobro veče.',
         phonetic: 'DOH-broh VEH-cheh',
+        variants: [
+          {
+            english: 'Good day.',
+            montenegrin: 'Dobar dan.',
+            phonetic: 'DOH-bar dahn'
+          },
+          {
+            english: 'Good morning.',
+            montenegrin: 'Dobro jutro.',
+            phonetic: 'DOH-broh YOO-troh'
+          }
+        ],
         practice: true
       },
       {
@@ -476,6 +500,7 @@ function App() {
   const [selectedScenarioId, setSelectedScenarioId] = useState(conversationScenarios[0].id);
   const [conversationIndex, setConversationIndex] = useState(0);
   const [isConversationRevealed, setIsConversationRevealed] = useState(false);
+  const [conversationView, setConversationView] = useState('practice');
   const [selectedCategoryId, setSelectedCategoryId] = useState('all');
   const [promptSide, setPromptSide] = useState('english');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -497,7 +522,14 @@ function App() {
   const conversationPracticeLines = useMemo(
     () =>
       selectedScenario.lines
-        .map((line, lineIndex) => ({ ...line, lineIndex }))
+        .map((line, lineIndex) => ({
+          ...line,
+          lineIndex,
+          contextLine: [...selectedScenario.lines]
+            .slice(0, lineIndex)
+            .reverse()
+            .find((previousLine) => !previousLine.practice)
+        }))
         .filter((line) => line.practice),
     [selectedScenario]
   );
@@ -632,6 +664,11 @@ function App() {
   const moveToConversationLine = (nextIndex) => {
     setConversationIndex(nextIndex);
     setIsConversationRevealed(false);
+  };
+
+  const practiceConversationLine = (nextIndex) => {
+    moveToConversationLine(nextIndex);
+    setConversationView('practice');
   };
 
   const moveNextConversationLine = () => {
@@ -777,7 +814,11 @@ function App() {
             <div className="section-head">
               <div>
                 <h2>{selectedScenario.name}</h2>
-                <p>Practice your lines, with the other speaker shown for context.</p>
+                <p>
+                  {conversationView === 'practice'
+                    ? 'Practice one learner turn at a time.'
+                    : 'Preview or review the full dialogue.'}
+                </p>
               </div>
               <div className="session-meter" aria-label="Conversation line">
                 <span>Your turn</span>
@@ -788,11 +829,37 @@ function App() {
               </div>
             </div>
 
-            {currentConversationLine ? (
+            <div className="segmented-control conversation-view-toggle" aria-label="Conversation view">
+              <button
+                type="button"
+                className={conversationView === 'practice' ? 'is-active' : ''}
+                onClick={() => setConversationView('practice')}
+              >
+                Practice
+              </button>
+              <button
+                type="button"
+                className={conversationView === 'dialogue' ? 'is-active' : ''}
+                onClick={() => setConversationView('dialogue')}
+              >
+                Full dialogue
+              </button>
+            </div>
+
+            {conversationView === 'practice' && currentConversationLine ? (
               <>
                 <div className="conversation-card">
-                  <span className="phrase-label">{currentConversationLine.speaker} · Goal</span>
-                  <strong>{currentConversationLine.goal ?? currentConversationLine.english}</strong>
+                  {currentConversationLine.contextLine ? (
+                    <div className="conversation-context">
+                      <span>{currentConversationLine.contextLine.speaker}</span>
+                      <strong>{currentConversationLine.contextLine.english}</strong>
+                      <small>{currentConversationLine.contextLine.montenegrin}</small>
+                    </div>
+                  ) : null}
+                  <div className="conversation-goal">
+                    <span className="phrase-label">{currentConversationLine.speaker} · Goal</span>
+                    <strong>{currentConversationLine.goal ?? currentConversationLine.english}</strong>
+                  </div>
                   {isConversationRevealed ? (
                     <>
                       <span className="conversation-answer">
@@ -846,44 +913,44 @@ function App() {
                     Next
                   </button>
                 </div>
-
-                <div className="conversation-transcript" aria-label={`${selectedScenario.name} transcript`}>
-                  {selectedScenario.lines.map((line, index) => {
-                    const practiceIndex = conversationPracticeLines.findIndex(
-                      (practiceLine) => practiceLine.lineIndex === index
-                    );
-                    const isActivePracticeLine = practiceIndex === conversationIndex;
-
-                    return line.practice ? (
-                      <button
-                        key={`${selectedScenario.id}-${index}`}
-                        type="button"
-                        className={[
-                          'transcript-line',
-                          'is-practice',
-                          isActivePracticeLine ? 'is-active' : ''
-                        ]
-                          .filter(Boolean)
-                          .join(' ')}
-                        onClick={() => moveToConversationLine(practiceIndex)}
-                      >
-                        <span>{line.speaker}</span>
-                        <strong>{line.goal ?? line.english}</strong>
-                        <small>{line.montenegrin}</small>
-                      </button>
-                    ) : (
-                      <div
-                        key={`${selectedScenario.id}-${index}`}
-                        className="transcript-line is-context"
-                      >
-                        <span>{line.speaker}</span>
-                        <strong>{line.english}</strong>
-                        <small>{line.montenegrin}</small>
-                      </div>
-                    );
-                  })}
-                </div>
               </>
+            ) : conversationView === 'dialogue' ? (
+              <div className="conversation-transcript" aria-label={`${selectedScenario.name} transcript`}>
+                {selectedScenario.lines.map((line, index) => {
+                  const practiceIndex = conversationPracticeLines.findIndex(
+                    (practiceLine) => practiceLine.lineIndex === index
+                  );
+                  const isActivePracticeLine = practiceIndex === conversationIndex;
+
+                  return line.practice ? (
+                    <button
+                      key={`${selectedScenario.id}-${index}`}
+                      type="button"
+                      className={[
+                        'transcript-line',
+                        'is-practice',
+                        isActivePracticeLine ? 'is-active' : ''
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                      onClick={() => practiceConversationLine(practiceIndex)}
+                    >
+                      <span>{line.speaker}</span>
+                      <strong>{line.goal ?? line.english}</strong>
+                      <small>{line.montenegrin}</small>
+                    </button>
+                  ) : (
+                    <div
+                      key={`${selectedScenario.id}-${index}`}
+                      className="transcript-line is-context"
+                    >
+                      <span>{line.speaker}</span>
+                      <strong>{line.english}</strong>
+                      <small>{line.montenegrin}</small>
+                    </div>
+                  );
+                })}
+              </div>
             ) : (
               <div className="empty-practice">
                 <h3>No lines in this scenario</h3>
