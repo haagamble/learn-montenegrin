@@ -704,9 +704,9 @@ const conversationScenarios = [
         phonetic: 'ohn yeh DEE-vahn DYEH-chak',
         variants: [
           {
-            english: 'He is cute.',
-            montenegrin: 'On je sladak.',
-            phonetic: 'ohn yeh SLAH-dahk'
+            english: 'She is a lovely girl.',
+            montenegrin: 'Ona je divna djevojčica.',
+            phonetic: 'OH-nah yeh DEE-vnah dyeh-VOY-chee-tsah'
           },
           {
             english: 'I am glad.',
