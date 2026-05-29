@@ -669,18 +669,12 @@ const conversationScenarios = [
         practice: true
       },
       {
-        speaker: 'Neighbour',
-        english: 'My son is in the park.',
-        montenegrin: 'Moj sin je u parku.',
-        phonetic: 'moy seen yeh oo PAR-koo',
-        practice: false
-      },
-      {
         speaker: 'You',
         goal: 'Ask how their children are.',
         english: 'How are your children?',
         montenegrin: 'Kako su vaša djeca?',
         phonetic: 'KAH-koh soo VAH-shah DYEH-tsah',
+        hideContext: true,
         variants: [
           {
             english: 'How is your son?',
@@ -1148,10 +1142,12 @@ function App() {
         .map((line, lineIndex) => ({
           ...line,
           lineIndex,
-          contextLine: [...selectedScenario.lines]
-            .slice(0, lineIndex)
-            .reverse()
-            .find((previousLine) => !previousLine.practice)
+          contextLine: line.hideContext
+            ? null
+            : [...selectedScenario.lines]
+                .slice(0, lineIndex)
+                .reverse()
+                .find((previousLine) => !previousLine.practice)
         }))
         .filter((line) => line.practice),
     [selectedScenario]
