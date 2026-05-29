@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Montenegrin Phrase Trainer</title>
+  <rect width="512" height="512" rx="112" fill="#0f766e" />
+  <path fill="#ffffff" d="M128 136h256c22 0 40 18 40 40v128c0 22-18 40-40 40H236l-76 56c-13 10-32 0-32-16v-40c-22 0-40-18-40-40V176c0-22 18-40 40-40Z" opacity=".95" />
+  <path fill="#075985" d="M155 199h202v34H155v-34Zm0 68h142v34H155v-34Z" />
+</svg>
