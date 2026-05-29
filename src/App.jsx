@@ -178,6 +178,391 @@ const conversationScenarios = [
     ]
   },
   {
+    id: 'market',
+    name: 'Market',
+    description: 'Buy fruit, vegetables, and fish, then ask about price and quantity.',
+    lines: [
+      {
+        speaker: 'You',
+        goal: 'Greet the vendor.',
+        english: 'Good day.',
+        montenegrin: 'Dobar dan.',
+        phonetic: 'DOH-bar dahn',
+        variants: [
+          {
+            english: 'Good morning.',
+            montenegrin: 'Dobro jutro.',
+            phonetic: 'DOH-broh YOO-troh'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Vendor',
+        english: 'Good day. Go ahead.',
+        montenegrin: 'Dobar dan. Izvolite.',
+        phonetic: 'DOH-bar dahn eez-VOH-lee-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for the fruit you want.',
+        english: 'Apples, please.',
+        montenegrin: 'Jabuke, molim.',
+        phonetic: 'YAH-boo-keh MOH-leem',
+        variants: [
+          {
+            english: 'Bananas, please.',
+            montenegrin: 'Banane, molim.',
+            phonetic: 'bah-NAH-neh MOH-leem'
+          },
+          {
+            english: 'Oranges, please.',
+            montenegrin: 'Narandže, molim.',
+            phonetic: 'nah-RAHN-jeh MOH-leem'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Vendor',
+        english: 'How much would you like?',
+        montenegrin: 'Koliko želite?',
+        phonetic: 'KOH-lee-koh ZHEH-lee-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for the quantity you want.',
+        english: 'One kilo, please.',
+        montenegrin: 'Jedan kilo, molim.',
+        phonetic: 'YEH-dahn KEE-loh MOH-leem',
+        variants: [
+          {
+            english: 'Half a kilo, please.',
+            montenegrin: 'Pola kila, molim.',
+            phonetic: 'POH-lah KEE-lah MOH-leem'
+          },
+          {
+            english: 'Two kilos, please.',
+            montenegrin: 'Dva kila, molim.',
+            phonetic: 'dvah KEE-lah MOH-leem'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Vendor',
+        english: 'Anything else?',
+        montenegrin: 'Još nešto?',
+        phonetic: 'yohsh NESH-toh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for the vegetables you want.',
+        english: 'Tomatoes, please.',
+        montenegrin: 'Paradajz, molim.',
+        phonetic: 'pah-rah-DAHYZ MOH-leem',
+        variants: [
+          {
+            english: 'Potatoes, please.',
+            montenegrin: 'Krompir, molim.',
+            phonetic: 'KROM-peer MOH-leem'
+          },
+          {
+            english: 'Cucumbers, please.',
+            montenegrin: 'Krastavac, molim.',
+            phonetic: 'KRAH-stah-vahts MOH-leem'
+          },
+          {
+            english: 'Onions, please.',
+            montenegrin: 'Luk, molim.',
+            phonetic: 'look MOH-leem'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Vendor',
+        english: 'Fresh fish is over there.',
+        montenegrin: 'Svježa riba je tamo.',
+        phonetic: 'SVYEH-zhah REE-bah yeh TAH-moh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for fish.',
+        english: 'Do you have fish?',
+        montenegrin: 'Imate li ribu?',
+        phonetic: 'EE-mah-teh lee REE-boo',
+        variants: [
+          {
+            english: 'Fish, please.',
+            montenegrin: 'Ribu, molim.',
+            phonetic: 'REE-boo MOH-leem'
+          },
+          {
+            english: 'Do you have seafood?',
+            montenegrin: 'Imate li morske plodove?',
+            phonetic: 'EE-mah-teh lee MOR-skeh PLOH-doh-veh'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Vendor',
+        english: 'Yes, of course.',
+        montenegrin: 'Da, naravno.',
+        phonetic: 'dah nah-RAHV-noh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask how much a kilo costs.',
+        english: 'How much does a kilo cost?',
+        montenegrin: 'Koliko košta kilo?',
+        phonetic: 'KOH-lee-koh KOH-shtah KEE-loh',
+        variants: [
+          {
+            english: 'How much does it cost?',
+            montenegrin: 'Koliko košta?',
+            phonetic: 'KOH-lee-koh KOH-shtah'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Vendor',
+        english: 'That is five euros.',
+        montenegrin: 'To je pet eura.',
+        phonetic: 'toh yeh pet EH-oo-rah',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for the total.',
+        english: 'How much is it total?',
+        montenegrin: 'Koliko je ukupno?',
+        phonetic: 'KOH-lee-koh yeh OO-koop-noh',
+        variants: [
+          {
+            english: 'The bill, please.',
+            montenegrin: 'Račun, molim.',
+            phonetic: 'RAH-choon MOH-leem'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Vendor',
+        english: 'Here you go.',
+        montenegrin: 'Izvolite.',
+        phonetic: 'eez-VOH-lee-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Thank the vendor and say goodbye.',
+        english: 'Thank you. Goodbye.',
+        montenegrin: 'Hvala. Doviđenja.',
+        phonetic: 'HVAH-lah doh-vee-JEH-nyah',
+        variants: [
+          {
+            english: 'Thank you.',
+            montenegrin: 'Hvala.',
+            phonetic: 'HVAH-lah'
+          }
+        ],
+        practice: true
+      }
+    ]
+  },
+  {
+    id: 'meeting',
+    name: 'Meeting Someone',
+    description: 'Introduce yourself, answer friendly questions, and close the conversation.',
+    lines: [
+      {
+        speaker: 'You',
+        goal: 'Greet someone politely.',
+        english: 'Good day.',
+        montenegrin: 'Dobar dan.',
+        phonetic: 'DOH-bar dahn',
+        variants: [
+          {
+            english: 'Hello.',
+            montenegrin: 'Zdravo.',
+            phonetic: 'ZDRAH-voh'
+          },
+          {
+            english: 'Hi.',
+            montenegrin: 'Ćao.',
+            phonetic: 'chow'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Other person',
+        english: 'Good day. How are you?',
+        montenegrin: 'Dobar dan. Kako ste?',
+        phonetic: 'DOH-bar dahn KAH-koh steh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Say how you are and ask back.',
+        english: 'Fine, thank you. And you?',
+        montenegrin: 'Dobro, hvala. A vi?',
+        phonetic: 'DOH-broh HVAH-lah ah vee',
+        variants: [
+          {
+            english: 'Fine, thank you.',
+            montenegrin: 'Dobro, hvala.',
+            phonetic: 'DOH-broh HVAH-lah'
+          },
+          {
+            english: 'Fine, thank you. And you? (casual)',
+            montenegrin: 'Dobro, hvala. A ti?',
+            phonetic: 'DOH-broh HVAH-lah ah tee'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Other person',
+        english: 'I am fine, thank you. What is your name?',
+        montenegrin: 'Dobro sam, hvala. Kako se zovete?',
+        phonetic: 'DOH-broh sahm HVAH-lah KAH-koh seh ZOH-veh-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Give your name.',
+        english: 'My name is Ana.',
+        montenegrin: 'Ime mi je Ana.',
+        phonetic: 'EE-meh mee yeh AH-nah',
+        variants: [
+          {
+            english: 'My name is Marko.',
+            montenegrin: 'Ime mi je Marko.',
+            phonetic: 'EE-meh mee yeh MAR-koh'
+          },
+          {
+            english: 'My name is Sara.',
+            montenegrin: 'Ime mi je Sara.',
+            phonetic: 'EE-meh mee yeh SAH-rah'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Other person',
+        english: 'Nice to meet you.',
+        montenegrin: 'Drago mi je.',
+        phonetic: 'DRAH-goh mee yeh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Say that it is nice to meet them too.',
+        english: 'Nice to meet you too.',
+        montenegrin: 'I meni je drago.',
+        phonetic: 'ee MEH-nee yeh DRAH-goh',
+        variants: [
+          {
+            english: 'Nice to meet you.',
+            montenegrin: 'Drago mi je.',
+            phonetic: 'DRAH-goh mee yeh'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Other person',
+        english: 'Where are you from?',
+        montenegrin: 'Odakle ste?',
+        phonetic: 'oh-DAH-kleh steh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Say where you are from.',
+        english: 'I am from the United States.',
+        montenegrin: 'Ja sam iz Sjedinjenih Država.',
+        phonetic: 'yah sahm eez syeh-DEE-nyeh-nee drah-ZHAH-vah',
+        variants: [
+          {
+            english: 'I am from England.',
+            montenegrin: 'Ja sam iz Engleske.',
+            phonetic: 'yah sahm eez ENG-les-keh'
+          },
+          {
+            english: 'I am not from here.',
+            montenegrin: 'Nijesam odavde.',
+            phonetic: 'NYEH-sahm oh-DAHV-deh'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Other person',
+        english: 'Where do you live?',
+        montenegrin: 'Gdje živite?',
+        phonetic: 'gdyeh ZHEE-vee-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Say where you live.',
+        english: 'I live in Podgorica.',
+        montenegrin: 'Živim u Podgorici.',
+        phonetic: 'ZHEE-veem oo pod-GOH-ree-tsee',
+        variants: [
+          {
+            english: 'I live in Budva.',
+            montenegrin: 'Živim u Budvi.',
+            phonetic: 'ZHEE-veem oo BOOD-vee'
+          },
+          {
+            english: 'I live in Kotor.',
+            montenegrin: 'Živim u Kotoru.',
+            phonetic: 'ZHEE-veem oo KOH-toh-roo'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Other person',
+        english: 'See you.',
+        montenegrin: 'Vidimo se.',
+        phonetic: 'VEE-dee-moh seh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Say goodbye.',
+        english: 'Goodbye.',
+        montenegrin: 'Doviđenja.',
+        phonetic: 'doh-vee-JEH-nyah',
+        variants: [
+          {
+            english: 'See you.',
+            montenegrin: 'Vidimo se.',
+            phonetic: 'VEE-dee-moh seh'
+          },
+          {
+            english: 'Bye.',
+            montenegrin: 'Ćao.',
+            phonetic: 'chow'
+          }
+        ],
+        practice: true
+      }
+    ]
+  },
+  {
     id: 'hotel',
     name: 'Hotel',
     description: 'Check in, ask useful questions, and handle a small problem.',
@@ -844,7 +1229,7 @@ function App() {
             {conversationView === 'practice' && currentConversationLine ? (
               <>
                 <div className="conversation-card">
-                  {currentConversationLine.contextLine ? (
+                  {currentConversationLine.contextLine && !isConversationRevealed ? (
                     <div className="conversation-context">
                       <span>{currentConversationLine.contextLine.speaker}</span>
                       <strong>{currentConversationLine.contextLine.montenegrin}</strong>
