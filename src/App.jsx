@@ -34,10 +34,11 @@ const conversationScenarios = [
   {
     id: 'cafe',
     name: 'Cafe',
-    description: 'Order a drink, ask for the bill, and close politely.',
+    description: 'Ask for a table, order coffee and food, and close politely.',
     lines: [
       {
         speaker: 'You',
+        goal: 'Greet the server.',
         english: 'Good day.',
         montenegrin: 'Dobar dan.',
         phonetic: 'DOH-bar dahn',
@@ -52,9 +53,84 @@ const conversationScenarios = [
       },
       {
         speaker: 'You',
+        goal: 'Ask for a table for two.',
+        english: 'A table for two, please.',
+        montenegrin: 'Sto za dvije osobe, molim.',
+        phonetic: 'stoh zah DVEE-yeh OH-soh-beh MOH-leem',
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'Of course. Here you go.',
+        montenegrin: 'Naravno. Izvolite.',
+        phonetic: 'nah-RAHV-noh eez-VOH-lee-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for a coffee politely.',
         english: 'I would like coffee, please.',
         montenegrin: 'Htio bih kafu, molim.',
         phonetic: 'HTEE-oh beeh KAH-foo MOH-leem',
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'Would you like milk or sugar?',
+        montenegrin: 'Želite li mlijeko ili šećer?',
+        phonetic: 'ZHEH-lee-teh lee MLYEH-koh EE-lee SHEH-cher',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Answer how you want the coffee.',
+        english: 'Plain, please.',
+        montenegrin: 'Bez mlijeka i šećera, molim.',
+        phonetic: 'bez MLYEH-kah ee SHEH-cheh-rah MOH-leem',
+        variants: [
+          {
+            english: 'Milk and sugar, thank you.',
+            montenegrin: 'Sa mlijekom i šećerom, hvala.',
+            phonetic: 'sah MLYEH-kohm ee SHEH-cheh-rom HVAH-lah'
+          },
+          {
+            english: 'Milk only, please.',
+            montenegrin: 'Samo mlijeko, molim.',
+            phonetic: 'SAH-moh MLYEH-koh MOH-leem'
+          },
+          {
+            english: 'Sugar only, please.',
+            montenegrin: 'Samo šećer, molim.',
+            phonetic: 'SAH-moh SHEH-cher MOH-leem'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'Anything else?',
+        montenegrin: 'Još nešto?',
+        phonetic: 'yohsh NESH-toh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for something small to eat.',
+        english: 'Do you have cake?',
+        montenegrin: 'Imate li kolač?',
+        phonetic: 'EE-mah-teh lee KOH-lach',
+        variants: [
+          {
+            english: 'Do you have a sandwich?',
+            montenegrin: 'Imate li sendvič?',
+            phonetic: 'EE-mah-teh lee SEND-veech'
+          },
+          {
+            english: 'One more, please.',
+            montenegrin: 'Još jedno, molim.',
+            phonetic: 'yohsh YEHD-noh MOH-leem'
+          }
+        ],
         practice: true
       },
       {
@@ -66,6 +142,7 @@ const conversationScenarios = [
       },
       {
         speaker: 'You',
+        goal: 'Ask for the bill.',
         english: 'The bill, please.',
         montenegrin: 'Račun, molim.',
         phonetic: 'RAH-choon MOH-leem',
@@ -80,6 +157,7 @@ const conversationScenarios = [
       },
       {
         speaker: 'You',
+        goal: 'Thank the server.',
         english: 'Thank you.',
         montenegrin: 'Hvala.',
         phonetic: 'HVAH-lah',
@@ -90,10 +168,11 @@ const conversationScenarios = [
   {
     id: 'hotel',
     name: 'Hotel',
-    description: 'Check in, ask about breakfast, and handle a key problem.',
+    description: 'Check in, ask useful questions, and handle a small problem.',
     lines: [
       {
         speaker: 'You',
+        goal: 'Greet reception in the evening.',
         english: 'Good evening.',
         montenegrin: 'Dobro veče.',
         phonetic: 'DOH-broh VEH-cheh',
@@ -108,6 +187,7 @@ const conversationScenarios = [
       },
       {
         speaker: 'You',
+        goal: 'Say that you have a reservation.',
         english: 'I have a reservation.',
         montenegrin: 'Imam rezervaciju.',
         phonetic: 'EE-mahm reh-zer-VAH-tsee-yoo',
@@ -122,6 +202,22 @@ const conversationScenarios = [
       },
       {
         speaker: 'You',
+        goal: 'Give your name.',
+        english: 'My name is Ana.',
+        montenegrin: 'Ime mi je Ana.',
+        phonetic: 'EE-meh mee yeh AH-nah',
+        practice: true
+      },
+      {
+        speaker: 'Reception',
+        english: 'Thank you.',
+        montenegrin: 'Hvala.',
+        phonetic: 'HVAH-lah',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask if breakfast is included.',
         english: 'Is breakfast included?',
         montenegrin: 'Da li je doručak uključen?',
         phonetic: 'dah lee yeh DOH-roo-chak ook-LYOO-chen',
@@ -136,9 +232,40 @@ const conversationScenarios = [
       },
       {
         speaker: 'You',
+        goal: 'Ask where the room is.',
+        english: 'Where is the room?',
+        montenegrin: 'Gdje je soba?',
+        phonetic: 'gdyeh yeh SOH-bah',
+        practice: true
+      },
+      {
+        speaker: 'Reception',
+        english: 'It is upstairs.',
+        montenegrin: 'Gore je.',
+        phonetic: 'GOH-reh yeh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Explain that the key does not work.',
         english: 'The key does not work.',
         montenegrin: 'Ključ ne radi.',
         phonetic: 'klyooch neh RAH-dee',
+        practice: true
+      },
+      {
+        speaker: 'Reception',
+        english: 'I will help you.',
+        montenegrin: 'Pomoći ću vam.',
+        phonetic: 'POH-moh-chee choo vahm',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask if you can leave your bag here.',
+        english: 'Can I leave my bag here?',
+        montenegrin: 'Mogu li ostaviti torbu ovdje?',
+        phonetic: 'MOH-goo lee oh-STAH-vee-tee TOR-boo OHV-dyeh',
         practice: true
       }
     ]
@@ -150,6 +277,7 @@ const conversationScenarios = [
     lines: [
       {
         speaker: 'You',
+        goal: 'Ask where the bus station is.',
         english: 'Where is the bus station?',
         montenegrin: 'Gdje je autobuska stanica?',
         phonetic: 'gdyeh yeh ow-toh-BOOS-kah STAH-nee-tsah',
@@ -164,9 +292,25 @@ const conversationScenarios = [
       },
       {
         speaker: 'You',
+        goal: 'Ask where you can buy a ticket.',
+        english: 'Where can I buy a ticket?',
+        montenegrin: 'Gdje mogu kupiti kartu?',
+        phonetic: 'gdyeh MOH-goo KOO-pee-tee KAR-too',
+        practice: true
+      },
+      {
+        speaker: 'Local',
+        english: 'At the station.',
+        montenegrin: 'Na stanici.',
+        phonetic: 'nah STAH-nee-tsee',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for one ticket.',
         english: 'I need a ticket.',
-        montenegrin: 'Treba mi karta.',
-        phonetic: 'TREH-bah mee KAR-tah',
+        montenegrin: 'Jednu kartu, molim.',
+        phonetic: 'YEHD-noo KAR-too MOH-leem',
         practice: true
       },
       {
@@ -178,6 +322,7 @@ const conversationScenarios = [
       },
       {
         speaker: 'You',
+        goal: 'Ask when the bus leaves.',
         english: 'When does the bus leave?',
         montenegrin: 'Kada autobus polazi?',
         phonetic: 'KAH-dah OW-toh-boos poh-LAH-zee',
@@ -192,6 +337,37 @@ const conversationScenarios = [
       },
       {
         speaker: 'You',
+        goal: 'Ask if the bus goes to Kotor.',
+        english: 'Does the bus go to Kotor?',
+        montenegrin: 'Da li autobus ide za Kotor?',
+        phonetic: 'dah lee OW-toh-boos EE-deh zah KOH-tor',
+        practice: true
+      },
+      {
+        speaker: 'Clerk',
+        english: 'Yes, it goes to Kotor.',
+        montenegrin: 'Da, ide za Kotor.',
+        phonetic: 'dah EE-deh zah KOH-tor',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Say that you need a taxi.',
+        english: 'I need a taxi.',
+        montenegrin: 'Treba mi taksi.',
+        phonetic: 'TREH-bah mee TAK-see',
+        practice: true
+      },
+      {
+        speaker: 'Clerk',
+        english: 'A taxi is outside.',
+        montenegrin: 'Taksi je napolju.',
+        phonetic: 'TAK-see yeh nah-POH-lyoo',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Thank them.',
         english: 'Thank you.',
         montenegrin: 'Hvala.',
         phonetic: 'HVAH-lah',
@@ -615,13 +791,33 @@ function App() {
             {currentConversationLine ? (
               <>
                 <div className="conversation-card">
-                  <span className="phrase-label">{currentConversationLine.speaker}</span>
-                  <strong>{currentConversationLine.english}</strong>
+                  <span className="phrase-label">{currentConversationLine.speaker} · Goal</span>
+                  <strong>{currentConversationLine.goal ?? currentConversationLine.english}</strong>
                   {isConversationRevealed ? (
-                    <span className="conversation-answer">
-                      <span>{currentConversationLine.montenegrin}</span>
-                      <small>{currentConversationLine.phonetic}</small>
-                    </span>
+                    <>
+                      <span className="conversation-answer">
+                        <span>{currentConversationLine.montenegrin}</span>
+                        <small>
+                          {currentConversationLine.phonetic} · {currentConversationLine.english}
+                        </small>
+                      </span>
+                      {currentConversationLine.variants?.length > 0 ? (
+                        <div className="conversation-variants" aria-label="Other good answers">
+                          <span>Other good answers</span>
+                          {currentConversationLine.variants.map((variant) => (
+                            <div
+                              key={`${variant.montenegrin}-${variant.english}`}
+                              className="conversation-variant"
+                            >
+                              <strong>{variant.montenegrin}</strong>
+                              <small>
+                                {variant.phonetic} · {variant.english}
+                              </small>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
+                    </>
                   ) : (
                     <span className="phrase-support">Think of your Montenegrin line.</span>
                   )}
@@ -672,7 +868,7 @@ function App() {
                         onClick={() => moveToConversationLine(practiceIndex)}
                       >
                         <span>{line.speaker}</span>
-                        <strong>{line.english}</strong>
+                        <strong>{line.goal ?? line.english}</strong>
                         <small>{line.montenegrin}</small>
                       </button>
                     ) : (
