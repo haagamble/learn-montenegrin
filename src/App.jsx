@@ -96,7 +96,7 @@ const conversationScenarios = [
       {
         speaker: 'You',
         goal: 'Answer how you want the coffee.',
-        english: 'Plain, please.',
+        english: 'Without milk and sugar, please.',
         montenegrin: 'Bez mlijeka i šećera, molim.',
         phonetic: 'bez MLYEH-kah ee SHEH-cheh-rah MOH-leem',
         variants: [
@@ -138,9 +138,9 @@ const conversationScenarios = [
             phonetic: 'EE-mah-teh lee SEND-veech'
           },
           {
-            english: 'One more, please.',
-            montenegrin: 'Još jedno, molim.',
-            phonetic: 'yohsh YEHD-noh MOH-leem'
+            english: 'Do you have bread?',
+            montenegrin: 'Imate li hljeb?',
+            phonetic: 'EE-mah-teh lee hlyeb'
           }
         ],
         practice: true
@@ -193,11 +193,6 @@ const conversationScenarios = [
             english: 'Good day.',
             montenegrin: 'Dobar dan.',
             phonetic: 'DOH-bar dahn'
-          },
-          {
-            english: 'Good morning.',
-            montenegrin: 'Dobro jutro.',
-            phonetic: 'DOH-broh YOO-troh'
           }
         ],
         practice: true
@@ -219,9 +214,9 @@ const conversationScenarios = [
       },
       {
         speaker: 'Reception',
-        english: 'Your passport, please.',
-        montenegrin: 'Pasoš, molim.',
-        phonetic: 'PAH-sohsh MOH-leem',
+        english: 'What is your name?',
+        montenegrin: 'Kako se zovete?',
+        phonetic: 'KAH-koh seh ZOH-veh-teh',
         practice: false
       },
       {
@@ -852,8 +847,8 @@ function App() {
                   {currentConversationLine.contextLine ? (
                     <div className="conversation-context">
                       <span>{currentConversationLine.contextLine.speaker}</span>
-                      <strong>{currentConversationLine.contextLine.english}</strong>
-                      <small>{currentConversationLine.contextLine.montenegrin}</small>
+                      <strong>{currentConversationLine.contextLine.montenegrin}</strong>
+                      <small>{currentConversationLine.contextLine.english}</small>
                     </div>
                   ) : null}
                   <div className="conversation-goal">
