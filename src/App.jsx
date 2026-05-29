@@ -285,9 +285,36 @@ const conversationScenarios = [
       },
       {
         speaker: 'Vendor',
-        english: 'Fresh fish is over there.',
-        montenegrin: 'Svježa riba je tamo.',
-        phonetic: 'SVYEH-zhah REE-bah yeh TAH-moh',
+        english: 'How much would you like?',
+        montenegrin: 'Koliko želite?',
+        phonetic: 'KOH-lee-koh ZHEH-lee-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for the quantity you want.',
+        english: 'One kilo, please.',
+        montenegrin: 'Jedan kilo, molim.',
+        phonetic: 'YEH-dahn KEE-loh MOH-leem',
+        variants: [
+          {
+            english: 'Half a kilo, please.',
+            montenegrin: 'Pola kila, molim.',
+            phonetic: 'POH-lah KEE-lah MOH-leem'
+          },
+          {
+            english: 'Two kilos, please.',
+            montenegrin: 'Dva kila, molim.',
+            phonetic: 'dvah KEE-lah MOH-leem'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Vendor',
+        english: 'Anything else?',
+        montenegrin: 'Još nešto?',
+        phonetic: 'yohsh NESH-toh',
         practice: false
       },
       {
@@ -445,14 +472,14 @@ const conversationScenarios = [
         phonetic: 'EE-meh mee yeh AH-nah',
         variants: [
           {
-            english: 'My name is Marko.',
-            montenegrin: 'Ime mi je Marko.',
-            phonetic: 'EE-meh mee yeh MAR-koh'
+            english: 'My name is Nadine.',
+            montenegrin: 'Ime mi je Nadine.',
+            phonetic: 'EE-meh mee yeh nah-DEEN'
           },
           {
-            english: 'My name is Sara.',
-            montenegrin: 'Ime mi je Sara.',
-            phonetic: 'EE-meh mee yeh SAH-rah'
+            english: 'My name is Jack.',
+            montenegrin: 'Ime mi je Jack.',
+            phonetic: 'EE-meh mee yeh jak'
           }
         ],
         practice: true
