@@ -284,9 +284,9 @@
   margin-top: 1rem;
 }
 
-.conversation-transcript button {
+.conversation-transcript .transcript-line {
   display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr);
+  grid-template-columns: minmax(5.25rem, auto) minmax(0, 1fr);
   gap: 0.5rem 0.85rem;
   align-items: start;
   border: 1px solid #e2e8f0;
@@ -298,22 +298,33 @@
   text-align: left;
 }
 
-.conversation-transcript button:hover,
-.conversation-transcript button.is-active {
+.conversation-transcript button.transcript-line:hover,
+.conversation-transcript button.transcript-line.is-active {
   border-color: #0f766e;
   background: #f0fdfa;
+}
+
+.conversation-transcript .is-context {
+  background: #f8fafc;
 }
 
 .conversation-transcript span {
   grid-row: span 2;
   display: grid;
   place-items: center;
-  width: 2rem;
-  height: 2rem;
+  min-height: 2rem;
   border-radius: 999px;
+  padding: 0.25rem 0.55rem;
   background: #e2e8f0;
   color: #334155;
+  font-size: 0.76rem;
   font-weight: 800;
+  text-transform: uppercase;
+}
+
+.conversation-transcript .is-practice span {
+  background: #e8f7f3;
+  color: #0f766e;
 }
 
 .conversation-transcript strong {
@@ -859,8 +870,8 @@
     padding: 1.25rem;
   }
 
-  .conversation-transcript button {
-    grid-template-columns: 1.8rem minmax(0, 1fr);
+  .conversation-transcript .transcript-line {
+    grid-template-columns: 1fr;
   }
 
   .section-head {

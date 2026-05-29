@@ -35,57 +35,168 @@ const conversationScenarios = [
     id: 'cafe',
     name: 'Cafe',
     description: 'Order a drink, ask for the bill, and close politely.',
-    itemIds: ['good-day', 'table-for-two', 'i-would-like-coffee', 'bill-please', 'thank-you']
+    lines: [
+      {
+        speaker: 'You',
+        english: 'Good day.',
+        montenegrin: 'Dobar dan.',
+        phonetic: 'DOH-bar dahn',
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'Good day. Go ahead.',
+        montenegrin: 'Dobar dan. Izvolite.',
+        phonetic: 'DOH-bar dahn Eez-VOH-lee-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        english: 'I would like coffee, please.',
+        montenegrin: 'Htio bih kafu, molim.',
+        phonetic: 'HTEE-oh beeh KAH-foo MOH-leem',
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'Of course.',
+        montenegrin: 'Naravno.',
+        phonetic: 'nah-RAHV-noh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        english: 'The bill, please.',
+        montenegrin: 'Račun, molim.',
+        phonetic: 'RAH-choon MOH-leem',
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'Here you go.',
+        montenegrin: 'Izvolite.',
+        phonetic: 'eez-VOH-lee-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        english: 'Thank you.',
+        montenegrin: 'Hvala.',
+        phonetic: 'HVAH-lah',
+        practice: true
+      }
+    ]
   },
   {
     id: 'hotel',
     name: 'Hotel',
     description: 'Check in, ask about breakfast, and handle a key problem.',
-    itemIds: ['i-have-reservation', 'where-is-reception', 'is-breakfast-included', 'key-does-not-work']
+    lines: [
+      {
+        speaker: 'You',
+        english: 'Good evening.',
+        montenegrin: 'Dobro veče.',
+        phonetic: 'DOH-broh VEH-cheh',
+        practice: true
+      },
+      {
+        speaker: 'Reception',
+        english: 'Good evening. Welcome.',
+        montenegrin: 'Dobro veče. Dobro došli.',
+        phonetic: 'DOH-broh VEH-cheh DOH-broh DOH-shlee',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        english: 'I have a reservation.',
+        montenegrin: 'Imam rezervaciju.',
+        phonetic: 'EE-mahm reh-zer-VAH-tsee-yoo',
+        practice: true
+      },
+      {
+        speaker: 'Reception',
+        english: 'Your passport, please.',
+        montenegrin: 'Pasoš, molim.',
+        phonetic: 'PAH-sohsh MOH-leem',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        english: 'Is breakfast included?',
+        montenegrin: 'Da li je doručak uključen?',
+        phonetic: 'dah lee yeh DOH-roo-chak ook-LYOO-chen',
+        practice: true
+      },
+      {
+        speaker: 'Reception',
+        english: 'Yes, breakfast is included.',
+        montenegrin: 'Da, doručak je uključen.',
+        phonetic: 'dah DOH-roo-chak yeh ook-LYOO-chen',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        english: 'The key does not work.',
+        montenegrin: 'Ključ ne radi.',
+        phonetic: 'klyooch neh RAH-dee',
+        practice: true
+      }
+    ]
   },
   {
     id: 'transport',
     name: 'Transport',
     description: 'Find the station, buy a ticket, and ask about departure.',
-    itemIds: ['where-is-bus-station', 'i-need-ticket', 'when-does-bus-leave', 'i-need-taxi']
-  },
-  {
-    id: 'directions-help',
-    name: 'Directions and Help',
-    description: 'Ask for directions and recover when you do not understand.',
-    itemIds: [
-      'where-bathroom',
-      'go-straight',
-      'turn-left',
-      'i-do-not-understand',
-      'please-speak-slowly',
-      'can-you-repeat-that'
-    ]
-  },
-  {
-    id: 'meeting-someone',
-    name: 'Meeting Someone',
-    description: 'Introduce yourself and ask where someone is from.',
-    itemIds: [
-      'good-day',
-      'what-is-your-name',
-      'my-name-is-ana',
-      'where-are-you-from',
-      'i-am-from-the-united-states',
-      'nice-to-meet-you'
-    ]
-  },
-  {
-    id: 'technology',
-    name: 'Technology',
-    description: 'Ask about Wi-Fi, passwords, charging, and common device problems.',
-    itemIds: [
-      'do-you-have-wifi',
-      'wifi-password',
-      'wifi-does-not-work',
-      'need-charger',
-      'charge-phone-here',
-      'app-does-not-work'
+    lines: [
+      {
+        speaker: 'You',
+        english: 'Where is the bus station?',
+        montenegrin: 'Gdje je autobuska stanica?',
+        phonetic: 'gdyeh yeh ow-toh-BOOS-kah STAH-nee-tsah',
+        practice: true
+      },
+      {
+        speaker: 'Local',
+        english: 'It is near the center.',
+        montenegrin: 'Blizu je centra.',
+        phonetic: 'BLEE-zoo yeh TSEN-trah',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        english: 'I need a ticket.',
+        montenegrin: 'Treba mi karta.',
+        phonetic: 'TREH-bah mee KAR-tah',
+        practice: true
+      },
+      {
+        speaker: 'Clerk',
+        english: 'One ticket?',
+        montenegrin: 'Jednu kartu?',
+        phonetic: 'YEHD-noo KAR-too',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        english: 'When does the bus leave?',
+        montenegrin: 'Kada autobus polazi?',
+        phonetic: 'KAH-dah OW-toh-boos poh-LAH-zee',
+        practice: true
+      },
+      {
+        speaker: 'Clerk',
+        english: 'The bus leaves soon.',
+        montenegrin: 'Autobus uskoro polazi.',
+        phonetic: 'OW-toh-boos OO-skoh-roh poh-LAH-zee',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        english: 'Thank you.',
+        montenegrin: 'Hvala.',
+        phonetic: 'HVAH-lah',
+        practice: true
+      }
     ]
   }
 ];
@@ -204,18 +315,18 @@ function App() {
   const categoryOptions = [allCategories, practiceCategory, ...categories];
   const selectedCategory =
     categoryOptions.find((category) => category.id === selectedCategoryId) ?? allCategories;
-  const learningItemById = useMemo(
-    () => new Map(learningItems.map((item) => [item.id, item])),
-    []
-  );
   const selectedScenario =
     conversationScenarios.find((scenario) => scenario.id === selectedScenarioId) ??
     conversationScenarios[0];
-  const conversationItems = useMemo(
-    () => selectedScenario.itemIds.map((id) => learningItemById.get(id)).filter(Boolean),
-    [learningItemById, selectedScenario]
+  const conversationPracticeLines = useMemo(
+    () =>
+      selectedScenario.lines
+        .map((line, lineIndex) => ({ ...line, lineIndex }))
+        .filter((line) => line.practice),
+    [selectedScenario]
   );
-  const currentConversationItem = conversationItems[conversationIndex] ?? conversationItems[0];
+  const currentConversationLine =
+    conversationPracticeLines[conversationIndex] ?? conversationPracticeLines[0];
   const practiceIds = useMemo(
     () =>
       new Set(
@@ -285,11 +396,14 @@ function App() {
   }, [currentIndex, deck.length]);
 
   useEffect(() => {
-    if (conversationItems.length > 0 && conversationIndex > conversationItems.length - 1) {
-      setConversationIndex(conversationItems.length - 1);
+    if (
+      conversationPracticeLines.length > 0 &&
+      conversationIndex > conversationPracticeLines.length - 1
+    ) {
+      setConversationIndex(conversationPracticeLines.length - 1);
       setIsConversationRevealed(false);
     }
-  }, [conversationIndex, conversationItems.length]);
+  }, [conversationIndex, conversationPracticeLines.length]);
 
   const resetDeckPosition = () => {
     setCurrentIndex(0);
@@ -345,7 +459,7 @@ function App() {
   };
 
   const moveNextConversationLine = () => {
-    moveToConversationLine(Math.min(conversationItems.length - 1, conversationIndex + 1));
+    moveToConversationLine(Math.min(conversationPracticeLines.length - 1, conversationIndex + 1));
   };
 
   const movePreviousConversationLine = () => {
@@ -435,7 +549,7 @@ function App() {
             >
               <span className="mode-kicker">Practice scenes</span>
               <strong>Conversation Practice</strong>
-              <span>Practice short real-life scenarios line by line.</span>
+              <span>Practice your lines inside short real-life dialogs.</span>
               <span className="mode-count">{conversationScenarios.length} scenarios</span>
             </button>
           </section>
@@ -461,7 +575,7 @@ function App() {
                   onClick={() => chooseScenario(scenario.id)}
                 >
                   <span>{scenario.name}</span>
-                  <strong>{scenario.itemIds.length}</strong>
+                  <strong>{scenario.lines.filter((line) => line.practice).length}</strong>
                 </button>
               ))}
             </div>
@@ -477,7 +591,7 @@ function App() {
               >
                 {conversationScenarios.map((scenario) => (
                   <option key={scenario.id} value={scenario.id}>
-                    {scenario.name} ({scenario.itemIds.length})
+                    {scenario.name} ({scenario.lines.filter((line) => line.practice).length})
                   </option>
                 ))}
               </select>
@@ -487,29 +601,29 @@ function App() {
             <div className="section-head">
               <div>
                 <h2>{selectedScenario.name}</h2>
-                <p>Practice one line at a time, then reveal the Montenegrin.</p>
+                <p>Practice your lines, with the other speaker shown for context.</p>
               </div>
               <div className="session-meter" aria-label="Conversation line">
-                <span>Line</span>
+                <span>Your turn</span>
                 <strong>
-                  {conversationItems.length > 0 ? conversationIndex + 1 : 0} of{' '}
-                  {conversationItems.length}
+                  {conversationPracticeLines.length > 0 ? conversationIndex + 1 : 0} of{' '}
+                  {conversationPracticeLines.length}
                 </strong>
               </div>
             </div>
 
-            {currentConversationItem ? (
+            {currentConversationLine ? (
               <>
                 <div className="conversation-card">
-                  <span className="phrase-label">English</span>
-                  <strong>{currentConversationItem.english}</strong>
+                  <span className="phrase-label">{currentConversationLine.speaker}</span>
+                  <strong>{currentConversationLine.english}</strong>
                   {isConversationRevealed ? (
                     <span className="conversation-answer">
-                      <span>{currentConversationItem.montenegrin}</span>
-                      <small>{currentConversationItem.phonetic}</small>
+                      <span>{currentConversationLine.montenegrin}</span>
+                      <small>{currentConversationLine.phonetic}</small>
                     </span>
                   ) : (
-                    <span className="phrase-support">Think of the Montenegrin line.</span>
+                    <span className="phrase-support">Think of your Montenegrin line.</span>
                   )}
                 </div>
 
@@ -531,25 +645,47 @@ function App() {
                   <button
                     type="button"
                     onClick={moveNextConversationLine}
-                    disabled={conversationIndex === conversationItems.length - 1}
+                    disabled={conversationIndex === conversationPracticeLines.length - 1}
                   >
                     Next
                   </button>
                 </div>
 
                 <div className="conversation-transcript" aria-label={`${selectedScenario.name} transcript`}>
-                  {conversationItems.map((item, index) => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      className={index === conversationIndex ? 'is-active' : ''}
-                      onClick={() => moveToConversationLine(index)}
-                    >
-                      <span>{index + 1}</span>
-                      <strong>{item.english}</strong>
-                      <small>{item.montenegrin}</small>
-                    </button>
-                  ))}
+                  {selectedScenario.lines.map((line, index) => {
+                    const practiceIndex = conversationPracticeLines.findIndex(
+                      (practiceLine) => practiceLine.lineIndex === index
+                    );
+                    const isActivePracticeLine = practiceIndex === conversationIndex;
+
+                    return line.practice ? (
+                      <button
+                        key={`${selectedScenario.id}-${index}`}
+                        type="button"
+                        className={[
+                          'transcript-line',
+                          'is-practice',
+                          isActivePracticeLine ? 'is-active' : ''
+                        ]
+                          .filter(Boolean)
+                          .join(' ')}
+                        onClick={() => moveToConversationLine(practiceIndex)}
+                      >
+                        <span>{line.speaker}</span>
+                        <strong>{line.english}</strong>
+                        <small>{line.montenegrin}</small>
+                      </button>
+                    ) : (
+                      <div
+                        key={`${selectedScenario.id}-${index}`}
+                        className="transcript-line is-context"
+                      >
+                        <span>{line.speaker}</span>
+                        <strong>{line.english}</strong>
+                        <small>{line.montenegrin}</small>
+                      </div>
+                    );
+                  })}
                 </div>
               </>
             ) : (
