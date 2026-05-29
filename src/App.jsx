@@ -361,14 +361,14 @@ const conversationScenarios = [
       },
       {
         speaker: 'Vendor',
-        english: 'That is five euros.',
-        montenegrin: 'To je pet eura.',
-        phonetic: 'toh yeh pet EH-oo-rah',
+        english: 'Five euros per kilo.',
+        montenegrin: 'Pet eura po kilogramu.',
+        phonetic: 'pet EH-oo-rah poh kee-loh-GRAH-moo',
         practice: false
       },
       {
         speaker: 'You',
-        goal: 'Ask for the total.',
+        goal: 'Ask for the total price.',
         english: 'How much is it total?',
         montenegrin: 'Koliko je ukupno?',
         phonetic: 'KOH-lee-koh yeh OO-koop-noh',
@@ -578,6 +578,222 @@ const conversationScenarios = [
             english: 'See you.',
             montenegrin: 'Vidimo se.',
             phonetic: 'VEE-dee-moh seh'
+          },
+          {
+            english: 'Bye.',
+            montenegrin: 'Ćao.',
+            phonetic: 'chow'
+          }
+        ],
+        practice: true
+      }
+    ]
+  },
+  {
+    id: 'neighbour',
+    name: 'Neighbour Chat',
+    description: 'Make friendly small talk about weather, children, work, and daily plans.',
+    lines: [
+      {
+        speaker: 'You',
+        goal: 'Greet your neighbour.',
+        english: 'Good day.',
+        montenegrin: 'Dobar dan.',
+        phonetic: 'DOH-bar dahn',
+        variants: [
+          {
+            english: 'Hello.',
+            montenegrin: 'Zdravo.',
+            phonetic: 'ZDRAH-voh'
+          },
+          {
+            english: 'Hi.',
+            montenegrin: 'Ćao.',
+            phonetic: 'chow'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Neighbour',
+        english: 'Good day. How are you?',
+        montenegrin: 'Dobar dan. Kako ste?',
+        phonetic: 'DOH-bar dahn KAH-koh steh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Answer and ask how they are.',
+        english: 'Fine, thank you. And you?',
+        montenegrin: 'Dobro, hvala. A vi?',
+        phonetic: 'DOH-broh HVAH-lah ah vee',
+        variants: [
+          {
+            english: 'I am fine, thank you.',
+            montenegrin: 'Dobro sam, hvala.',
+            phonetic: 'DOH-broh sahm HVAH-lah'
+          },
+          {
+            english: 'Not bad, thank you.',
+            montenegrin: 'Nije loše, hvala.',
+            phonetic: 'NEE-yeh LOH-sheh HVAH-lah'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Neighbour',
+        english: 'I am fine, thank you. The weather is nice today.',
+        montenegrin: 'Dobro sam, hvala. Danas je lijepo vrijeme.',
+        phonetic: 'DOH-broh sahm HVAH-lah DAH-nahs yeh LYEH-poh VRYEH-meh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Agree or comment about the weather.',
+        english: 'Yes, the weather is nice.',
+        montenegrin: 'Da, lijepo je vrijeme.',
+        phonetic: 'dah LYEH-poh yeh VRYEH-meh',
+        variants: [
+          {
+            english: 'It is warm today.',
+            montenegrin: 'Danas je toplo.',
+            phonetic: 'DAH-nahs yeh TOH-ploh'
+          },
+          {
+            english: 'It is cold today.',
+            montenegrin: 'Danas je hladno.',
+            phonetic: 'DAH-nahs yeh HLAHD-noh'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Neighbour',
+        english: 'My son is in the park.',
+        montenegrin: 'Moj sin je u parku.',
+        phonetic: 'moy seen yeh oo PAR-koo',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask how their children are.',
+        english: 'How are your children?',
+        montenegrin: 'Kako su vaša djeca?',
+        phonetic: 'KAH-koh soo VAH-shah DYEH-tsah',
+        variants: [
+          {
+            english: 'How is your son?',
+            montenegrin: 'Kako je vaš sin?',
+            phonetic: 'KAH-koh yeh vahsh seen'
+          },
+          {
+            english: 'How is your daughter?',
+            montenegrin: 'Kako je vaša ćerka?',
+            phonetic: 'KAH-koh yeh VAH-shah CHER-kah'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Neighbour',
+        english: 'He is well, thank you.',
+        montenegrin: 'Dobro je, hvala.',
+        phonetic: 'DOH-broh yeh HVAH-lah',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Say something kind about their child.',
+        english: 'He is a lovely boy.',
+        montenegrin: 'On je divan dječak.',
+        phonetic: 'ohn yeh DEE-vahn DYEH-chak',
+        variants: [
+          {
+            english: 'He is cute.',
+            montenegrin: 'On je sladak.',
+            phonetic: 'ohn yeh SLAH-dahk'
+          },
+          {
+            english: 'I am glad.',
+            montenegrin: 'Drago mi je.',
+            phonetic: 'DRAH-goh mee yeh'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Neighbour',
+        english: 'How is work?',
+        montenegrin: 'Kako je posao?',
+        phonetic: 'KAH-koh yeh POH-sah-oh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Answer briefly about work.',
+        english: 'Good, thank you.',
+        montenegrin: 'Dobro, hvala.',
+        phonetic: 'DOH-broh HVAH-lah',
+        variants: [
+          {
+            english: 'A lot of work.',
+            montenegrin: 'Puno posla.',
+            phonetic: 'POO-noh POH-slah'
+          },
+          {
+            english: 'Not bad.',
+            montenegrin: 'Nije loše.',
+            phonetic: 'NEE-yeh LOH-sheh'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Neighbour',
+        english: 'Where are you going?',
+        montenegrin: 'Gdje idete?',
+        phonetic: 'gdyeh EE-deh-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Say where you are going.',
+        english: 'I am going home.',
+        montenegrin: 'Idem kući.',
+        phonetic: 'EE-dem KOO-chee',
+        variants: [
+          {
+            english: 'I am going for a walk.',
+            montenegrin: 'Idem u šetnju.',
+            phonetic: 'EE-dem oo SHET-nyoo'
+          },
+          {
+            english: 'I am going to the store.',
+            montenegrin: 'Idem u prodavnicu.',
+            phonetic: 'EE-dem oo proh-DAHV-nee-tsoo'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Neighbour',
+        english: 'See you.',
+        montenegrin: 'Vidimo se.',
+        phonetic: 'VEE-dee-moh seh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Say goodbye.',
+        english: 'See you.',
+        montenegrin: 'Vidimo se.',
+        phonetic: 'VEE-dee-moh seh',
+        variants: [
+          {
+            english: 'Goodbye.',
+            montenegrin: 'Doviđenja.',
+            phonetic: 'doh-vee-JEH-nyah'
           },
           {
             english: 'Bye.',
