@@ -776,9 +776,14 @@ const conversationScenarios = [
         phonetic: 'MOH-goo lee PLAH-tee-tee KAR-tee-tsom',
         variants: [
           {
-            english: 'I need a receipt.',
-            montenegrin: 'Treba mi račun.',
-            phonetic: 'TREH-bah mee RAH-choon'
+            english: 'Do you accept cards?',
+            montenegrin: 'Primate li kartice?',
+            phonetic: 'PREE-mah-teh lee KAR-tee-tseh'
+          },
+          {
+            english: 'Is card okay?',
+            montenegrin: 'Može karticom?',
+            phonetic: 'MOH-zheh KAR-tee-tsom'
           }
         ],
         practice: true
@@ -815,7 +820,7 @@ const conversationScenarios = [
   {
     id: 'bakery',
     name: 'Bakery',
-    description: 'Buy bread and pastries, ask what is fresh, and pay politely.',
+    description: 'Buy bread and pastries, ask what is good, and pay politely.',
     lines: [
       {
         speaker: 'You',
@@ -841,7 +846,7 @@ const conversationScenarios = [
       },
       {
         speaker: 'You',
-        goal: 'Ask what is fresh today.',
+        goal: 'Ask what is good.',
         english: 'What is fresh today?',
         montenegrin: 'Šta je svježe danas?',
         phonetic: 'shtah yeh SVYEH-zheh DAH-nahs',
@@ -901,14 +906,14 @@ const conversationScenarios = [
         phonetic: 'EE-mah-teh lee KOH-lach',
         variants: [
           {
-            english: 'A cake, please.',
-            montenegrin: 'Kolač, molim.',
-            phonetic: 'KOH-lach MOH-leem'
+            english: 'Can I have two croissants?',
+            montenegrin: 'Mogu li dobiti dva kroasana?',
+            phonetic: 'MOH-goo lee DOH-bee-tee dvah kroh-AH-sah-nah'
           },
           {
-            english: 'Do you have ice cream?',
-            montenegrin: 'Imate li sladoled?',
-            phonetic: 'EE-mah-teh lee SLAH-doh-led'
+            english: 'Can I have four chocolate pastries?',
+            montenegrin: 'Mogu li dobiti četiri čokoladna peciva?',
+            phonetic: 'MOH-goo lee DOH-bee-tee CHEH-tee-ree choh-koh-LAHD-nah PEH-tsee-vah'
           }
         ],
         practice: true
@@ -950,9 +955,14 @@ const conversationScenarios = [
         phonetic: 'MOH-goo lee PLAH-tee-tee KAR-tee-tsom',
         variants: [
           {
-            english: 'I need a receipt.',
-            montenegrin: 'Treba mi račun.',
-            phonetic: 'TREH-bah mee RAH-choon'
+            english: 'Do you accept cards?',
+            montenegrin: 'Primate li kartice?',
+            phonetic: 'PREE-mah-teh lee KAR-tee-tseh'
+          },
+          {
+            english: 'Is card okay?',
+            montenegrin: 'Može karticom?',
+            phonetic: 'MOH-zheh KAR-tee-tsom'
           }
         ],
         practice: true
