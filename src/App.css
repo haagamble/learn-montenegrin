@@ -241,8 +241,17 @@
   padding: 1.4rem;
 }
 
+.conversation-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
 .conversation-view-toggle {
-  margin: 0 0 1.25rem;
+  justify-content: flex-end;
+  margin: 0;
 }
 
 .conversation-card {
@@ -698,6 +707,10 @@
   background: #0f766e;
 }
 
+.study-actions .undo-button {
+  background: #475569;
+}
+
 .empty-practice {
   display: grid;
   min-height: 320px;
@@ -938,6 +951,19 @@
   .conversation-card {
     min-height: 260px;
     padding: 1.25rem;
+  }
+
+  .conversation-controls {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .conversation-view-toggle {
+    justify-content: stretch;
+  }
+
+  .conversation-view-toggle button {
+    flex: 1;
   }
 
   .conversation-transcript .transcript-line {

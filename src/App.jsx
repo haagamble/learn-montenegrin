@@ -674,7 +674,6 @@ const conversationScenarios = [
         english: 'How are your children?',
         montenegrin: 'Kako su vaša djeca?',
         phonetic: 'KAH-koh soo VAH-shah DYEH-tsah',
-        hideContext: true,
         variants: [
           {
             english: 'How is your son?',
@@ -1128,6 +1127,7 @@ function App() {
   const [difficultyFilter, setDifficultyFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [shuffleSeed, setShuffleSeed] = useState(0);
+  const [lastReviewAction, setLastReviewAction] = useState(null);
   const [reviewState, setReviewState] = useState(loadReviewState);
 
   const categoryOptions = [allCategories, practiceCategory, ...categories];
@@ -1142,12 +1142,10 @@ function App() {
         .map((line, lineIndex) => ({
           ...line,
           lineIndex,
-          contextLine: line.hideContext
-            ? null
-            : [...selectedScenario.lines]
-                .slice(0, lineIndex)
-                .reverse()
-                .find((previousLine) => !previousLine.practice)
+          contextLine:
+            lineIndex > 0 && !selectedScenario.lines[lineIndex - 1].practice
+              ? selectedScenario.lines[lineIndex - 1]
+              : null
         }))
         .filter((line) => line.practice),
     [selectedScenario]
@@ -1236,6 +1234,7 @@ function App() {
     setCurrentIndex(0);
     setIsRevealed(false);
     setIsDeckComplete(false);
+    setLastReviewAction(null);
   };
 
   const chooseCategory = (categoryId) => {
@@ -1317,11 +1316,21 @@ function App() {
       return;
     }
 
+    const reviewedItem = currentItem;
+    const reviewedIndex = currentIndex;
+    const previousEntry = reviewState[reviewedItem.id] ?? null;
+
+    setLastReviewAction({
+      itemId: reviewedItem.id,
+      cardIndex: reviewedIndex,
+      previousEntry
+    });
+
     setReviewState((current) => {
-      const existing = current[currentItem.id] ?? { correct: 0, missed: 0 };
+      const existing = current[reviewedItem.id] ?? { correct: 0, missed: 0 };
       const next = {
         ...current,
-        [currentItem.id]: {
+        [reviewedItem.id]: {
           status,
           correct: existing.correct + (status === 'known' ? 1 : 0),
           missed: existing.missed + (status === 'practice' ? 1 : 0),
@@ -1340,17 +1349,49 @@ function App() {
     }
   };
 
+  const undoLastReviewAction = () => {
+    if (!lastReviewAction) {
+      return;
+    }
+
+    setReviewState((current) => {
+      const next = { ...current };
+
+      if (lastReviewAction.previousEntry) {
+        next[lastReviewAction.itemId] = lastReviewAction.previousEntry;
+      } else {
+        delete next[lastReviewAction.itemId];
+      }
+
+      return next;
+    });
+
+    setCurrentIndex(lastReviewAction.cardIndex);
+    setIsDeckComplete(false);
+    setIsRevealed(true);
+    setLastReviewAction(null);
+  };
+
+  const heroTitle =
+    activeMode === 'home'
+      ? 'Choose a practice mode'
+      : activeMode === 'conversation'
+        ? 'Conversation practice'
+        : 'Flashcard practice';
+  const heroCopy =
+    activeMode === 'home'
+      ? 'Build recall with flashcards, then rehearse useful real-life exchanges.'
+      : activeMode === 'conversation'
+        ? 'Practice your lines inside short Montenegro-ready conversations.'
+        : 'Choose a deck and practice recall from either language.';
+
   return (
     <div className="app-shell">
       <header className="hero">
         <div>
           <p className="eyebrow">Montenegrin learner</p>
-          <h1>{activeMode === 'home' ? 'Choose a practice mode' : 'Focused Montenegrin practice'}</h1>
-          <p className="hero-copy">
-            {activeMode === 'home'
-              ? 'Build recall now, with conversation practice ready to grow next.'
-              : 'Choose a deck and practice recall from either language.'}
-          </p>
+          <h1>{heroTitle}</h1>
+          <p className="hero-copy">{heroCopy}</p>
         </div>
         <div className="hero-stats" aria-label="Starter curriculum">
           <span>
@@ -1430,15 +1471,7 @@ function App() {
               <p>{selectedScenario.description}</p>
             </div>
 
-            <div className="section-head">
-              <div>
-                <h2>{selectedScenario.name}</h2>
-                <p>
-                  {conversationView === 'practice'
-                    ? 'Practice one learner turn at a time.'
-                    : 'Preview or review the full dialogue.'}
-                </p>
-              </div>
+            <div className="conversation-controls">
               <div className="session-meter" aria-label="Conversation line">
                 <span>Your turn</span>
                 <strong>
@@ -1446,23 +1479,23 @@ function App() {
                   {conversationPracticeLines.length}
                 </strong>
               </div>
-            </div>
 
-            <div className="segmented-control conversation-view-toggle" aria-label="Conversation view">
-              <button
-                type="button"
-                className={conversationView === 'practice' ? 'is-active' : ''}
-                onClick={() => setConversationView('practice')}
-              >
-                Practice
-              </button>
-              <button
-                type="button"
-                className={conversationView === 'dialogue' ? 'is-active' : ''}
-                onClick={() => setConversationView('dialogue')}
-              >
-                Full dialogue
-              </button>
+              <div className="segmented-control conversation-view-toggle" aria-label="Conversation view">
+                <button
+                  type="button"
+                  className={conversationView === 'practice' ? 'is-active' : ''}
+                  onClick={() => setConversationView('practice')}
+                >
+                  Practice
+                </button>
+                <button
+                  type="button"
+                  className={conversationView === 'dialogue' ? 'is-active' : ''}
+                  onClick={() => setConversationView('dialogue')}
+                >
+                  Full dialogue
+                </button>
+              </div>
             </div>
 
             {conversationView === 'practice' && currentConversationLine ? (
@@ -1835,6 +1868,11 @@ function App() {
                     </button>
                   </>
                 )}
+                {lastReviewAction ? (
+                  <button type="button" className="undo-button" onClick={undoLastReviewAction}>
+                    Undo mark
+                  </button>
+                ) : null}
               </div>
             </>
           ) : (
