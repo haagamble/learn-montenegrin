@@ -406,6 +406,224 @@ const conversationScenarios = [
     ]
   },
   {
+    id: 'restaurant',
+    name: 'Restaurant Meal',
+    description: 'Ask for a table, order food and drinks, and finish the meal politely.',
+    lines: [
+      {
+        speaker: 'You',
+        goal: 'Greet the server.',
+        english: 'Good evening.',
+        montenegrin: 'Dobro veče.',
+        phonetic: 'DOH-broh VEH-cheh',
+        variants: [
+          {
+            english: 'Good day.',
+            montenegrin: 'Dobar dan.',
+            phonetic: 'DOH-bar dahn'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'Good evening. Go ahead.',
+        montenegrin: 'Dobro veče. Izvolite.',
+        phonetic: 'DOH-broh VEH-cheh eez-VOH-lee-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for a table for four near the window.',
+        english: 'A table for four near the window, please.',
+        montenegrin: 'Sto za četiri osobe blizu prozora, molim.',
+        phonetic: 'stoh zah CHEH-tee-ree OH-soh-beh BLEE-zoo PROH-zoh-rah MOH-leem',
+        variants: [
+          {
+            english: 'A table for four, please.',
+            montenegrin: 'Sto za četiri osobe, molim.',
+            phonetic: 'stoh zah CHEH-tee-ree OH-soh-beh MOH-leem'
+          },
+          {
+            english: 'Do you have a table near the window?',
+            montenegrin: 'Imate li sto blizu prozora?',
+            phonetic: 'EE-mah-teh lee stoh BLEE-zoo PROH-zoh-rah'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'Of course. Please sit.',
+        montenegrin: 'Naravno. Sjedite, molim.',
+        phonetic: 'nah-RAHV-noh SYEH-dee-teh MOH-leem',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask to see the menu.',
+        english: 'Can I see the menu?',
+        montenegrin: 'Mogu li vidjeti jelovnik?',
+        phonetic: 'MOH-goo lee VEE-dyeh-tee yeh-LOHV-neek',
+        variants: [
+          {
+            english: 'The menu, please.',
+            montenegrin: 'Jelovnik, molim.',
+            phonetic: 'yeh-LOHV-neek MOH-leem'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'Today we have fresh fish and chicken.',
+        montenegrin: 'Danas imamo svježu ribu i piletinu.',
+        phonetic: 'DAH-nahs EE-mah-moh SVYEH-zhoo REE-boo ee pee-LEH-tee-noo',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask what they recommend.',
+        english: 'What do you recommend?',
+        montenegrin: 'Šta preporučujete?',
+        phonetic: 'shtah preh-poh-ROO-choo-yeh-teh',
+        variants: [
+          {
+            english: 'What is good?',
+            montenegrin: 'Šta je dobro?',
+            phonetic: 'shtah yeh DOH-broh'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'I recommend the fish.',
+        montenegrin: 'Preporučujem ribu.',
+        phonetic: 'preh-poh-ROO-choo-yem REE-boo',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Order your food.',
+        english: 'I would like fish, please.',
+        montenegrin: 'Htio bih ribu, molim.',
+        phonetic: 'HTEE-oh beeh REE-boo MOH-leem',
+        variants: [
+          {
+            english: 'I would like chicken, please.',
+            montenegrin: 'Htio bih piletinu, molim.',
+            phonetic: 'HTEE-oh beeh pee-LEH-tee-noo MOH-leem'
+          },
+          {
+            english: 'I would like a salad, please.',
+            montenegrin: 'Htio bih salatu, molim.',
+            phonetic: 'HTEE-oh beeh sah-LAH-too MOH-leem'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'What would you like to drink?',
+        montenegrin: 'Šta želite da popijete?',
+        phonetic: 'shtah ZHEH-lee-teh dah poh-PEE-yeh-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Order a drink.',
+        english: 'Water, please.',
+        montenegrin: 'Vodu, molim.',
+        phonetic: 'VOH-doo MOH-leem',
+        variants: [
+          {
+            english: 'Wine, please.',
+            montenegrin: 'Vino, molim.',
+            phonetic: 'VEE-noh MOH-leem'
+          },
+          {
+            english: 'White wine, please.',
+            montenegrin: 'Bijelo vino, molim.',
+            phonetic: 'BYEH-loh VEE-noh MOH-leem'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'Is everything good?',
+        montenegrin: 'Da li je sve u redu?',
+        phonetic: 'dah lee yeh sveh oo REH-doo',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Say that everything is good.',
+        english: 'Everything is good, thank you.',
+        montenegrin: 'Sve je dobro, hvala.',
+        phonetic: 'sveh yeh DOH-broh HVAH-lah',
+        variants: [
+          {
+            english: 'Very good, thank you.',
+            montenegrin: 'Vrlo dobro, hvala.',
+            phonetic: 'VUR-loh DOH-broh HVAH-lah'
+          },
+          {
+            english: 'It is excellent.',
+            montenegrin: 'Odlično je.',
+            phonetic: 'OHD-leech-noh yeh'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'Anything else?',
+        montenegrin: 'Još nešto?',
+        phonetic: 'yohsh NESH-toh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for the bill.',
+        english: 'The bill, please.',
+        montenegrin: 'Račun, molim.',
+        phonetic: 'RAH-choon MOH-leem',
+        variants: [
+          {
+            english: 'Can I pay by card?',
+            montenegrin: 'Mogu li platiti karticom?',
+            phonetic: 'MOH-goo lee PLAH-tee-tee KAR-tee-tsom'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Server',
+        english: 'Here you go.',
+        montenegrin: 'Izvolite.',
+        phonetic: 'eez-VOH-lee-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Thank the server and say goodbye.',
+        english: 'Thank you. Goodbye.',
+        montenegrin: 'Hvala. Doviđenja.',
+        phonetic: 'HVAH-lah doh-vee-JEH-nyah',
+        variants: [
+          {
+            english: 'Thank you.',
+            montenegrin: 'Hvala.',
+            phonetic: 'HVAH-lah'
+          }
+        ],
+        practice: true
+      }
+    ]
+  },
+  {
     id: 'meeting',
     name: 'Meeting Someone',
     description: 'Introduce yourself, answer friendly questions, and close the conversation.',
@@ -955,9 +1173,9 @@ const conversationScenarios = [
       },
       {
         speaker: 'Clerk',
-        english: 'One ticket?',
-        montenegrin: 'Jednu kartu?',
-        phonetic: 'YEHD-noo KAR-too',
+        english: 'Here is your ticket.',
+        montenegrin: 'Izvolite kartu.',
+        phonetic: 'eez-VOH-lee-teh KAR-too',
         practice: false
       },
       {
