@@ -1116,6 +1116,7 @@ function App() {
   const [selectedScenarioId, setSelectedScenarioId] = useState(conversationScenarios[0].id);
   const [conversationIndex, setConversationIndex] = useState(0);
   const [isConversationRevealed, setIsConversationRevealed] = useState(false);
+  const [isScenarioComplete, setIsScenarioComplete] = useState(false);
   const [conversationView, setConversationView] = useState('practice');
   const [selectedCategoryId, setSelectedCategoryId] = useState('all');
   const [promptSide, setPromptSide] = useState('english');
@@ -1136,6 +1137,10 @@ function App() {
   const selectedScenario =
     conversationScenarios.find((scenario) => scenario.id === selectedScenarioId) ??
     conversationScenarios[0];
+  const selectedScenarioIndex = Math.max(
+    0,
+    conversationScenarios.findIndex((scenario) => scenario.id === selectedScenario.id)
+  );
   const conversationPracticeLines = useMemo(
     () =>
       selectedScenario.lines
@@ -1277,11 +1282,13 @@ function App() {
     setSelectedScenarioId(scenarioId);
     setConversationIndex(0);
     setIsConversationRevealed(false);
+    setIsScenarioComplete(false);
   };
 
   const moveToConversationLine = (nextIndex) => {
     setConversationIndex(nextIndex);
     setIsConversationRevealed(false);
+    setIsScenarioComplete(false);
   };
 
   const practiceConversationLine = (nextIndex) => {
@@ -1290,11 +1297,35 @@ function App() {
   };
 
   const moveNextConversationLine = () => {
-    moveToConversationLine(Math.min(conversationPracticeLines.length - 1, conversationIndex + 1));
+    if (conversationIndex >= conversationPracticeLines.length - 1) {
+      setIsConversationRevealed(false);
+      setIsScenarioComplete(true);
+      return;
+    }
+
+    moveToConversationLine(conversationIndex + 1);
   };
 
   const movePreviousConversationLine = () => {
     moveToConversationLine(Math.max(0, conversationIndex - 1));
+  };
+
+  const practiceScenarioAgain = () => {
+    setConversationIndex(0);
+    setIsConversationRevealed(false);
+    setIsScenarioComplete(false);
+    setConversationView('practice');
+  };
+
+  const reviewFullDialogue = () => {
+    setIsScenarioComplete(false);
+    setConversationView('dialogue');
+  };
+
+  const chooseNextScenario = () => {
+    const nextScenario = conversationScenarios[(selectedScenarioIndex + 1) % conversationScenarios.length];
+    chooseScenario(nextScenario.id);
+    setConversationView('practice');
   };
 
   const moveToCard = (nextIndex) => {
@@ -1498,7 +1529,24 @@ function App() {
               </div>
             </div>
 
-            {conversationView === 'practice' && currentConversationLine ? (
+            {conversationView === 'practice' && isScenarioComplete ? (
+              <div className="deck-complete scenario-complete">
+                <span className="complete-kicker">Scenario complete</span>
+                <h3>You practiced {conversationPracticeLines.length} turns in {selectedScenario.name}.</h3>
+                <p>Nice work. You can run it again, review the full dialogue, or move to another scenario.</p>
+                <div className="complete-actions">
+                  <button type="button" onClick={practiceScenarioAgain}>
+                    Practice again
+                  </button>
+                  <button type="button" onClick={reviewFullDialogue}>
+                    Full dialogue
+                  </button>
+                  <button type="button" onClick={chooseNextScenario}>
+                    Next scenario
+                  </button>
+                </div>
+              </div>
+            ) : conversationView === 'practice' && currentConversationLine ? (
               <>
                 <div className="conversation-card">
                   {currentConversationLine.contextLine && !isConversationRevealed ? (
@@ -1560,9 +1608,8 @@ function App() {
                   <button
                     type="button"
                     onClick={moveNextConversationLine}
-                    disabled={conversationIndex === conversationPracticeLines.length - 1}
                   >
-                    Next
+                    {conversationIndex === conversationPracticeLines.length - 1 ? 'Finish' : 'Next'}
                   </button>
                 </div>
               </>
