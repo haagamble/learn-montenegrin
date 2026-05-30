@@ -624,6 +624,185 @@ const conversationScenarios = [
     ]
   },
   {
+    id: 'pharmacy',
+    name: 'Pharmacy',
+    description: 'Explain a simple symptom, ask for medicine, and check how to take it.',
+    lines: [
+      {
+        speaker: 'You',
+        goal: 'Greet the pharmacist.',
+        english: 'Good day.',
+        montenegrin: 'Dobar dan.',
+        phonetic: 'DOH-bar dahn',
+        variants: [
+          {
+            english: 'Good evening.',
+            montenegrin: 'Dobro veče.',
+            phonetic: 'DOH-broh VEH-cheh'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Pharmacist',
+        english: 'Good day. How can I help you?',
+        montenegrin: 'Dobar dan. Kako vam mogu pomoći?',
+        phonetic: 'DOH-bar dahn KAH-koh vahm MOH-goo POH-moh-chee',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Say what hurts.',
+        english: 'My head hurts.',
+        montenegrin: 'Boli me glava.',
+        phonetic: 'BOH-lee meh GLAH-vah',
+        variants: [
+          {
+            english: 'I have a fever.',
+            montenegrin: 'Imam temperaturu.',
+            phonetic: 'EE-mahm tem-peh-rah-TOO-roo'
+          },
+          {
+            english: 'I have pain.',
+            montenegrin: 'Imam bol.',
+            phonetic: 'EE-mahm bohl'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Pharmacist',
+        english: 'Do you need medicine?',
+        montenegrin: 'Treba li vam lijek?',
+        phonetic: 'TREH-bah lee vahm LYEK',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Say that you need medicine.',
+        english: 'I need medicine.',
+        montenegrin: 'Treba mi lijek.',
+        phonetic: 'TREH-bah mee LYEK',
+        variants: [
+          {
+            english: 'Do you have medicine?',
+            montenegrin: 'Imate li lijek?',
+            phonetic: 'EE-mah-teh lee LYEK'
+          },
+          {
+            english: 'Can you help me?',
+            montenegrin: 'Možete li mi pomoći?',
+            phonetic: 'MOH-zheh-teh lee mee POH-moh-chee'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Pharmacist',
+        english: 'Are you allergic to anything?',
+        montenegrin: 'Da li ste alergični na nešto?',
+        phonetic: 'dah lee steh ah-LER-gee-chnee nah NESH-toh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Answer about allergies.',
+        english: 'I am not allergic.',
+        montenegrin: 'Nijesam alergičan.',
+        phonetic: 'NYEH-sahm ah-LER-gee-chahn',
+        variants: [
+          {
+            english: 'I am allergic to nuts.',
+            montenegrin: 'Alergičan sam na orahe.',
+            phonetic: 'ah-LER-gee-chahn sahm nah OH-rah-heh'
+          },
+          {
+            english: 'I am allergic to...',
+            montenegrin: 'Alergičan sam na...',
+            phonetic: 'ah-LER-gee-chahn sahm nah'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Pharmacist',
+        english: 'Take this medicine.',
+        montenegrin: 'Uzmite ovaj lijek.',
+        phonetic: 'OOZ-mee-teh OH-vai LYEK',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask how often to take it.',
+        english: 'How often should I take it?',
+        montenegrin: 'Koliko često da uzimam?',
+        phonetic: 'KOH-lee-koh CHES-toh dah OO-zee-mahm',
+        variants: [
+          {
+            english: 'How should I take it?',
+            montenegrin: 'Kako da uzimam?',
+            phonetic: 'KAH-koh dah OO-zee-mahm'
+          },
+          {
+            english: 'When should I take it?',
+            montenegrin: 'Kada da uzimam?',
+            phonetic: 'KAH-dah dah OO-zee-mahm'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Pharmacist',
+        english: 'Two times a day.',
+        montenegrin: 'Dva puta dnevno.',
+        phonetic: 'dvah POO-tah DNEHV-noh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask how much it costs.',
+        english: 'How much does it cost?',
+        montenegrin: 'Koliko košta?',
+        phonetic: 'KOH-lee-koh KOH-shtah',
+        variants: [
+          {
+            english: 'Can I pay by card?',
+            montenegrin: 'Mogu li platiti karticom?',
+            phonetic: 'MOH-goo lee PLAH-tee-tee KAR-tee-tsom'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Pharmacist',
+        english: 'That is four euros.',
+        montenegrin: 'To je četiri eura.',
+        phonetic: 'toh yeh CHEH-tee-ree EH-oo-rah',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Thank the pharmacist.',
+        english: 'Thank you. Goodbye.',
+        montenegrin: 'Hvala. Doviđenja.',
+        phonetic: 'HVAH-lah doh-vee-JEH-nyah',
+        variants: [
+          {
+            english: 'Thank you.',
+            montenegrin: 'Hvala.',
+            phonetic: 'HVAH-lah'
+          },
+          {
+            english: 'Goodbye.',
+            montenegrin: 'Doviđenja.',
+            phonetic: 'doh-vee-JEH-nyah'
+          }
+        ],
+        practice: true
+      }
+    ]
+  },
+  {
     id: 'meeting',
     name: 'Meeting Someone',
     description: 'Introduce yourself, answer friendly questions, and close the conversation.',
