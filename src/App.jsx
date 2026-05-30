@@ -652,7 +652,7 @@ const conversationScenarios = [
       },
       {
         speaker: 'You',
-        goal: 'Say what hurts.',
+        goal: 'Say what is wrong.',
         english: 'My head hurts.',
         montenegrin: 'Boli me glava.',
         phonetic: 'BOH-lee meh GLAH-vah',
@@ -688,11 +688,6 @@ const conversationScenarios = [
             english: 'Do you have medicine?',
             montenegrin: 'Imate li lijek?',
             phonetic: 'EE-mah-teh lee LYEK'
-          },
-          {
-            english: 'Can you help me?',
-            montenegrin: 'Možete li mi pomoći?',
-            phonetic: 'MOH-zheh-teh lee mee POH-moh-chee'
           }
         ],
         practice: true
@@ -717,9 +712,9 @@ const conversationScenarios = [
             phonetic: 'ah-LER-gee-chahn sahm nah OH-rah-heh'
           },
           {
-            english: 'I am allergic to...',
-            montenegrin: 'Alergičan sam na...',
-            phonetic: 'ah-LER-gee-chahn sahm nah'
+            english: 'I am allergic to penicillin.',
+            montenegrin: 'Alergičan sam na penicilin.',
+            phonetic: 'ah-LER-gee-chahn sahm nah peh-nee-tsee-LEEN'
           }
         ],
         practice: true
@@ -764,13 +759,6 @@ const conversationScenarios = [
         english: 'How much does it cost?',
         montenegrin: 'Koliko košta?',
         phonetic: 'KOH-lee-koh KOH-shtah',
-        variants: [
-          {
-            english: 'Can I pay by card?',
-            montenegrin: 'Mogu li platiti karticom?',
-            phonetic: 'MOH-goo lee PLAH-tee-tee KAR-tee-tsom'
-          }
-        ],
         practice: true
       },
       {
@@ -778,6 +766,28 @@ const conversationScenarios = [
         english: 'That is four euros.',
         montenegrin: 'To je četiri eura.',
         phonetic: 'toh yeh CHEH-tee-ree EH-oo-rah',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask if you can pay by card.',
+        english: 'Can I pay by card?',
+        montenegrin: 'Mogu li platiti karticom?',
+        phonetic: 'MOH-goo lee PLAH-tee-tee KAR-tee-tsom',
+        variants: [
+          {
+            english: 'I need a receipt.',
+            montenegrin: 'Treba mi račun.',
+            phonetic: 'TREH-bah mee RAH-choon'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Pharmacist',
+        english: 'Yes, you can.',
+        montenegrin: 'Da, možete.',
+        phonetic: 'dah MOH-zheh-teh',
         practice: false
       },
       {
@@ -796,6 +806,175 @@ const conversationScenarios = [
             english: 'Goodbye.',
             montenegrin: 'Doviđenja.',
             phonetic: 'doh-vee-JEH-nyah'
+          }
+        ],
+        practice: true
+      }
+    ]
+  },
+  {
+    id: 'bakery',
+    name: 'Bakery',
+    description: 'Buy bread and pastries, ask what is fresh, and pay politely.',
+    lines: [
+      {
+        speaker: 'You',
+        goal: 'Greet the baker.',
+        english: 'Good morning.',
+        montenegrin: 'Dobro jutro.',
+        phonetic: 'DOH-broh YOO-troh',
+        variants: [
+          {
+            english: 'Good day.',
+            montenegrin: 'Dobar dan.',
+            phonetic: 'DOH-bar dahn'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Baker',
+        english: 'Good morning. Go ahead.',
+        montenegrin: 'Dobro jutro. Izvolite.',
+        phonetic: 'DOH-broh YOO-troh eez-VOH-lee-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask what is fresh today.',
+        english: 'What is fresh today?',
+        montenegrin: 'Šta je svježe danas?',
+        phonetic: 'shtah yeh SVYEH-zheh DAH-nahs',
+        variants: [
+          {
+            english: 'What do you recommend?',
+            montenegrin: 'Šta preporučujete?',
+            phonetic: 'shtah preh-poh-ROO-choo-yeh-teh'
+          },
+          {
+            english: 'What is good?',
+            montenegrin: 'Šta je dobro?',
+            phonetic: 'shtah yeh DOH-broh'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Baker',
+        english: 'The bread is fresh.',
+        montenegrin: 'Hljeb je svjež.',
+        phonetic: 'hlyeb yeh svyezh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for bread.',
+        english: 'One bread, please.',
+        montenegrin: 'Jedan hljeb, molim.',
+        phonetic: 'YEH-dahn hlyeb MOH-leem',
+        variants: [
+          {
+            english: 'Bread, please.',
+            montenegrin: 'Hljeb, molim.',
+            phonetic: 'hlyeb MOH-leem'
+          },
+          {
+            english: 'Two breads, please.',
+            montenegrin: 'Dva hljeba, molim.',
+            phonetic: 'dvah HLYEH-bah MOH-leem'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Baker',
+        english: 'Anything else?',
+        montenegrin: 'Još nešto?',
+        phonetic: 'yohsh NESH-toh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for something sweet.',
+        english: 'Do you have cake?',
+        montenegrin: 'Imate li kolač?',
+        phonetic: 'EE-mah-teh lee KOH-lach',
+        variants: [
+          {
+            english: 'A cake, please.',
+            montenegrin: 'Kolač, molim.',
+            phonetic: 'KOH-lach MOH-leem'
+          },
+          {
+            english: 'Do you have ice cream?',
+            montenegrin: 'Imate li sladoled?',
+            phonetic: 'EE-mah-teh lee SLAH-doh-led'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Baker',
+        english: 'Yes, of course.',
+        montenegrin: 'Da, naravno.',
+        phonetic: 'dah nah-RAHV-noh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask for the price.',
+        english: 'How much does it cost?',
+        montenegrin: 'Koliko košta?',
+        phonetic: 'KOH-lee-koh KOH-shtah',
+        variants: [
+          {
+            english: 'How much is it total?',
+            montenegrin: 'Koliko je ukupno?',
+            phonetic: 'KOH-lee-koh yeh OO-koop-noh'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Baker',
+        english: 'That is three euros.',
+        montenegrin: 'To je tri eura.',
+        phonetic: 'toh yeh tree EH-oo-rah',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Ask if you can pay by card.',
+        english: 'Can I pay by card?',
+        montenegrin: 'Mogu li platiti karticom?',
+        phonetic: 'MOH-goo lee PLAH-tee-tee KAR-tee-tsom',
+        variants: [
+          {
+            english: 'I need a receipt.',
+            montenegrin: 'Treba mi račun.',
+            phonetic: 'TREH-bah mee RAH-choon'
+          }
+        ],
+        practice: true
+      },
+      {
+        speaker: 'Baker',
+        english: 'Yes, you can.',
+        montenegrin: 'Da, možete.',
+        phonetic: 'dah MOH-zheh-teh',
+        practice: false
+      },
+      {
+        speaker: 'You',
+        goal: 'Thank the baker and say goodbye.',
+        english: 'Thank you. Goodbye.',
+        montenegrin: 'Hvala. Doviđenja.',
+        phonetic: 'HVAH-lah doh-vee-JEH-nyah',
+        variants: [
+          {
+            english: 'Thank you.',
+            montenegrin: 'Hvala.',
+            phonetic: 'HVAH-lah'
           }
         ],
         practice: true
