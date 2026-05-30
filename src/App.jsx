@@ -1157,6 +1157,11 @@ function App() {
   );
   const currentConversationLine =
     conversationPracticeLines[conversationIndex] ?? conversationPracticeLines[0];
+  const conversationTurnCount = conversationPracticeLines.length;
+  const conversationProgressValue =
+    conversationTurnCount > 0 ? (isScenarioComplete ? conversationTurnCount : conversationIndex + 1) : 0;
+  const conversationProgressPercent =
+    conversationTurnCount > 0 ? (conversationProgressValue / conversationTurnCount) * 100 : 0;
   const practiceIds = useMemo(
     () =>
       new Set(
@@ -1471,17 +1476,27 @@ function App() {
               <p>{selectedScenario.description}</p>
             </div>
             <div className="scenario-list">
-              {conversationScenarios.map((scenario) => (
-                <button
-                  key={scenario.id}
-                  type="button"
-                  className={scenario.id === selectedScenarioId ? 'is-active' : ''}
-                  onClick={() => chooseScenario(scenario.id)}
-                >
-                  <span>{scenario.name}</span>
-                  <strong>{scenario.lines.filter((line) => line.practice).length}</strong>
-                </button>
-              ))}
+              {conversationScenarios.map((scenario) => {
+                const isSelectedScenario = scenario.id === selectedScenarioId;
+                const scenarioTurnCount = scenario.lines.filter((line) => line.practice).length;
+
+                return (
+                  <button
+                    key={scenario.id}
+                    type="button"
+                    className={isSelectedScenario ? 'is-active' : ''}
+                    onClick={() => chooseScenario(scenario.id)}
+                  >
+                    <span>{scenario.name}</span>
+                    <strong>{scenarioTurnCount}</strong>
+                    {isSelectedScenario ? (
+                      <span className="scenario-progress" aria-hidden="true">
+                        <span style={{ width: `${conversationProgressPercent}%` }} />
+                      </span>
+                    ) : null}
+                  </button>
+                );
+              })}
             </div>
           </aside>
 
@@ -1500,14 +1515,21 @@ function App() {
                 ))}
               </select>
               <p>{selectedScenario.description}</p>
+              <div className="mobile-scenario-progress">
+                <span>
+                  {conversationProgressValue} of {conversationTurnCount} turns
+                </span>
+                <span className="scenario-progress" aria-hidden="true">
+                  <span style={{ width: `${conversationProgressPercent}%` }} />
+                </span>
+              </div>
             </div>
 
             <div className="conversation-controls">
               <div className="session-meter" aria-label="Conversation line">
                 <span>Your turn</span>
                 <strong>
-                  {conversationPracticeLines.length > 0 ? conversationIndex + 1 : 0} of{' '}
-                  {conversationPracticeLines.length}
+                  {conversationProgressValue} of {conversationTurnCount}
                 </strong>
               </div>
 
@@ -1532,7 +1554,7 @@ function App() {
             {conversationView === 'practice' && isScenarioComplete ? (
               <div className="deck-complete scenario-complete">
                 <span className="complete-kicker">Scenario complete</span>
-                <h3>You practiced {conversationPracticeLines.length} turns in {selectedScenario.name}.</h3>
+                <h3>You practiced {conversationTurnCount} turns in {selectedScenario.name}.</h3>
                 <p>Nice work. You can run it again, review the full dialogue, or move to another scenario.</p>
                 <div className="complete-actions">
                   <button type="button" onClick={practiceScenarioAgain}>
